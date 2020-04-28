@@ -30,4 +30,9 @@ export class HomeService {
     // populate articles array
     this.generateArticles(items);
   }
+
+  getArticle(id: string) {
+    // fetch a single article
+    return { ...this._articles.find((a) => a.id === id) };
+  }
 }
