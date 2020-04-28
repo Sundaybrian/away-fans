@@ -20,7 +20,7 @@ const routes: Routes = [
           },
           {
             // tslint:disable-next-line: quotemark
-            path: "partial-news/:partialnews",
+            path: "partial-news/:partial-news",
             loadChildren: () =>
               import("./massivefc/partial-news/partial-news.module").then(
                 (m) => m.PartialNewsPageModule
