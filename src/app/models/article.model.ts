@@ -3,7 +3,7 @@ export class Article {
     public id: string,
     public title: string,
     public subtitle: string,
-    public desc: string,
+    public description: string,
     public imgUrl: string
   ) {}
 }
