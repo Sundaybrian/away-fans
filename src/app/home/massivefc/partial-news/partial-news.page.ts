@@ -21,7 +21,7 @@ export class PartialNewsPage implements OnInit {
   ngOnInit() {
     // grabbing the id of a partial news from the url
     this.route.paramMap.subscribe((paramMap) => {
-      // if no place id return home
+      // if no place id return to massivefc
       if (!paramMap.has("partial-news")) {
         this.navCtrl.navigateBack("/home/tabs/massivefc");
         return;
