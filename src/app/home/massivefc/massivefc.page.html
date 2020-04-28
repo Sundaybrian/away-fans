@@ -26,7 +26,7 @@
           <ion-button
             fill="clear"
             color="primary"
-            [routerLink]="['/','home','tabs','news']"
+            [routerLink]="['/','home','tabs','massivefc','partial-news',articles[0].id]"
           >
             More
           </ion-button>
@@ -39,7 +39,7 @@
           <ion-item
             *ngFor="let item of articles.slice(1)"
             detail
-            routerLink="['/','home','tabs','news']"
+            [routerLink]="['/','home','tabs','massivefc','partial-news',item.id]"
           >
             <ion-thumbnail slot="start">
               <ion-img [src]="item.imageUrl"></ion-img>

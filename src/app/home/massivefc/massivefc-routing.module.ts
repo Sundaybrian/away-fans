@@ -7,6 +7,10 @@ const routes: Routes = [
   {
     path: '',
     component: MassivefcPage
+  },
+  {
+    path: 'partial-news',
+    loadChildren: () => import('./partial-news/partial-news.module').then( m => m.PartialNewsPageModule)
   }
 ];
 

@@ -18,6 +18,14 @@ const routes: Routes = [
                 (m) => m.MassivefcPageModule
               ),
           },
+          {
+            // tslint:disable-next-line: quotemark
+            path: "partial-news/:partialnews",
+            loadChildren: () =>
+              import("./massivefc/partial-news/partial-news.module").then(
+                (m) => m.PartialNewsPageModule
+              ),
+          },
         ],
       },
       {
@@ -34,8 +42,13 @@ const routes: Routes = [
       },
       {
         path: "video",
-        loadChildren: () =>
-          import("../video/video.module").then((m) => m.VideoPageModule),
+        children: [
+          {
+            path: "",
+            loadChildren: () =>
+              import("../video/video.module").then((m) => m.VideoPageModule),
+          },
+        ],
       },
       {
         path: "news",
@@ -49,8 +62,13 @@ const routes: Routes = [
       },
       {
         path: "team",
-        loadChildren: () =>
-          import("../team/team.module").then((m) => m.TeamPageModule),
+        children: [
+          {
+            path: "",
+            loadChildren: () =>
+              import("../team/team.module").then((m) => m.TeamPageModule),
+          },
+        ],
       },
       {
         path: "",
