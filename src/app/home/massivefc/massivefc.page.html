@@ -1,9 +1,45 @@
 <ion-header>
   <ion-toolbar>
-    <ion-title>massivefc</ion-title>
+    <ion-title>MassiveFc</ion-title>
   </ion-toolbar>
 </ion-header>
 
-<ion-content>
-
+<ion-content padding>
+  <ion-grid>
+    <ion-row>
+      <h2>Latest News</h2>
+      <ion-col size="12" size-sm="8" offset-sm="2" text-center>
+        <ion-card>
+          <ion-card-header>
+            <ion-card-title>
+              {{articles[0].title}}
+            </ion-card-title>
+            <ion-card-subtitle>{{articles[0].imageUrl}}</ion-card-subtitle>
+          </ion-card-header>
+          <ion-img src="{{articles[0].imageUrl}}"></ion-img>
+        </ion-card>
+        <ion-card-content>
+          <p>{{articles[0].subtitle}}</p>
+        </ion-card-content>
+      </ion-col>
+    </ion-row>
+    <ion-row>
+      <ion-col size="12" size-sm="8" offset-sm="2" text-center>
+        <ion-list>
+          <ion-item *ngFor="let item of articles.slice(1)">
+            <ion-thumbnail slot="start">
+              <ion-img [src]="item.imageUrl"></ion-img>
+            </ion-thumbnail>
+            <ion-label>
+              <h2>{{ item.title}}</h2>
+              <p>{{ item.subtitle}}</p>
+            </ion-label>
+          </ion-item>
+        </ion-list>
+      </ion-col>
+    </ion-row>
+    <!-- end row news -->
+    <!-- start row fixture -->
+    <!-- end row fixture -->
+  </ion-grid>
 </ion-content>

@@ -21,7 +21,7 @@ export class HomeService {
         item.title,
         item.subtitle,
         item.description,
-        item.imgUrl
+        item.imageUrl
       );
     });
   }
