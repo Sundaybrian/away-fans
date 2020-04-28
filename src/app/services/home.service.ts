@@ -13,9 +13,9 @@ export class HomeService {
     return [...this._articles];
   }
 
-  generateArticles(items) {
+  generateArticles(arr) {
     // looping the exported local data to create articles
-    this._articles = items.map((item) => {
+    this._articles = arr.map((item) => {
       return new Article(
         item.id,
         item.title,
@@ -26,5 +26,8 @@ export class HomeService {
     });
   }
 
-  constructor() {}
+  constructor() {
+    // populate articles array
+    this.generateArticles(items);
+  }
 }
