@@ -1,14 +1,38 @@
 <ion-header>
   <ion-toolbar>
     <ion-title>
-      Ionic Blank
+      MassiveFc
     </ion-title>
   </ion-toolbar>
 </ion-header>
 
 <ion-content>
-  <div class="ion-padding">
-    The world is your oyster.
-    <p>If you get lost, the <a target="_blank" rel="noopener" href="https://ionicframework.com/docs/">docs</a> will be your guide.</p>
-  </div>
+  <ion-tabs>
+    <ion-tab-bar slot="bottom">
+      <ion-tab-button tab="home">
+        <ion-label>Home</ion-label>
+        <ion-icon name="home"></ion-icon>
+      </ion-tab-button>
+      <ion-tab-button tab="matches">
+        <ion-label>Matches</ion-label>
+        <ion-icon name="football"></ion-icon>
+      </ion-tab-button>
+      <ion-tab-button tab="video">
+        <ion-label>Videos</ion-label>
+        <ion-icon name="play"></ion-icon>
+      </ion-tab-button>
+      <ion-tab-button tab="news">
+        <ion-label>News</ion-label>
+        <ion-icon name="globe"></ion-icon>
+      </ion-tab-button>
+      <ion-tab-button tab="team">
+        <ion-label>Team</ion-label>
+        <ion-icon name="people"></ion-icon>
+      </ion-tab-button>
+      <ion-tab-button tab="ticktes">
+        <ion-label>Tickets</ion-label>
+        <ion-icon name="card"></ion-icon>
+      </ion-tab-button>
+    </ion-tab-bar>
+  </ion-tabs>
 </ion-content>
