@@ -1,5 +1,5 @@
 import { Component, OnInit } from "@angular/core";
-import { Article } from "src/app/models/article.model";
+import { Article, Fixture } from "src/app/models/article.model";
 import { HomeService } from "src/app/services/home.service";
 import { ModalController } from "@ionic/angular";
 import { FixtureResultModalComponent } from "./fixture-result-modal/fixture-result-modal.component";

@@ -8,4 +8,13 @@ export class Article {
   ) {}
 }
 
-export interface Fixture {}
+export interface Fixture {
+  id: string;
+  date: string;
+  stadium: string;
+  logoHome: string;
+  logoAway: string;
+  home: string;
+  away: string;
+  imageUrl: string;
+}

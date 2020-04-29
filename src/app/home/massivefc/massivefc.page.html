@@ -18,14 +18,14 @@
             <ion-card-title>
               {{articles[0].title}}
             </ion-card-title>
-            <ion-card-subtitle>{{articles[0].subtitle}}</ion-card-subtitle>
+            <ion-card-subtitle
+              >sat 2nd May - 1700, MassiveDynamics Arena</ion-card-subtitle
+            >
           </ion-card-header>
           <ion-img src="{{articles[0].imageUrl}}"></ion-img>
         </ion-card>
         <ion-card-content>
           <p>{{articles[0].subtitle}}</p>
-        </ion-card-content>
-        <div>
           <ion-button
             fill="clear"
             color="primary"
@@ -33,9 +33,10 @@
           >
             More
           </ion-button>
-        </div>
+        </ion-card-content>
       </ion-col>
     </ion-row>
+
     <ion-row>
       <ion-col size="12" size-sm="8" offset-sm="2" text-center>
         <ion-list>
@@ -88,7 +89,6 @@
         </ion-card>
         <ion-card-content>
           <h6>{{video.title}}</h6>
-          <p>{{video.subtitle}}</p>
         </ion-card-content>
       </ion-col>
     </ion-row>
@@ -98,7 +98,7 @@
     <h2>Latest Result</h2>
     <ion-row>
       <ion-col size="12" size-sm="8" offset-sm="2">
-        <ion-card>
+        <ion-card (click)="openModal()">
           <ion-card-header>
             <ion-card-title>
               sat 7th May-1800 Massive Stadium

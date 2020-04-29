@@ -1,9 +1,41 @@
 <ion-header>
   <ion-toolbar>
-    <ion-title>Some fixture</ion-title>
+    <ion-buttons slot="start">
+      <ion-button (click)="onCancel()">
+        <ion-icon name="close"></ion-icon>
+      </ion-button>
+    </ion-buttons>
+    <ion-title text-center>vS | {{ fixture.away }}</ion-title>
   </ion-toolbar>
 </ion-header>
 
-<ion-content>
-  modal baby
+<ion-content padding>
+  <ion-grid>
+    <ion-row>
+      <ion-col size="12" text-center>
+        <ion-card>
+          <ion-card-header>
+            <ion-card-title>
+              {{ fixture.home }} v {{ fixture.away }}
+            </ion-card-title>
+            <ion-card-subtitle text-left
+              >{{ fixture.date }} {{ fixture.stadium }}</ion-card-subtitle
+            >
+          </ion-card-header>
+          <ion-img src="{{ fixture.imageUrl }}"></ion-img>
+        </ion-card>
+        <ion-card-content> </ion-card-content>
+      </ion-col>
+    </ion-row>
+  </ion-grid>
+
+  <ion-segment>
+    <ion-segment-button value="playByPlay" checked
+      >PLAY-BY-PLAY</ion-segment-button
+    >
+    <ion-segment-button value="summary">SUMMARY</ion-segment-button>
+    <ion-segment-button value="matchNews">MATCH NEWS</ion-segment-button>
+    <ion-segment-button value="matchVideo">MATCH VIDEO</ion-segment-button>
+    <ion-segment-button value="teams">TEAMS</ion-segment-button>
+  </ion-segment>
 </ion-content>
