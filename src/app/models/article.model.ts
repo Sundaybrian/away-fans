@@ -7,3 +7,5 @@ export class Article {
     public imageUrl: string
   ) {}
 }
+
+export interface Fixture {}

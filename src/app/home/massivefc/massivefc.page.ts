@@ -28,6 +28,17 @@ export class MassivefcPage implements OnInit {
     this.modalCtrl
       .create({
         component: FixtureResultModalComponent,
+        componentProps: {
+          fixture: {
+            id: "1",
+            date: "sat 2nd May - 1700",
+            stadium: "GiveMeAJobo Stadium",
+            logoHome: "",
+            logoAway: "",
+            home: "MassiveFc",
+            away: "Kariobangi si sharks",
+          },
+        },
       })
       .then((modalEl) => {
         modalEl.present();
