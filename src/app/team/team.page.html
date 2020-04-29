@@ -7,4 +7,10 @@
   </ion-toolbar>
 </ion-header>
 
-<ion-content> </ion-content>
+<ion-content>
+  <ion-segment (ionChange)="onFilterContent($event)">
+    <ion-segment-button value="men" checked>MEN</ion-segment-button>
+    <ion-segment-button value="academy" checked>ACADEMY</ion-segment-button>
+    <ion-segment-button value="news" checked>TEAM NEWS</ion-segment-button>
+  </ion-segment>
+</ion-content>

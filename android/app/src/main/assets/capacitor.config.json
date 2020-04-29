@@ -1,8 +1,9 @@
 {
-  "appId": "io.ionic.starter",
+  "appId": "io.massive-dynamics.away-fans",
   "appName": "away-fans",
   "bundledWebRuntime": false,
   "npmClient": "npm",
   "webDir": "www",
-  "cordova": {}
+  "cordova": {},
+  "linuxAndroidStudioPath": "~/Android/android-studio-ide-191.5791312-linux/android-studio/bin/studio.sh"
 }
