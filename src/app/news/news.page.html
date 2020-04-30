@@ -5,16 +5,19 @@
     </ion-buttons>
     <ion-title>News</ion-title>
   </ion-toolbar>
+  <ion-toolbar>
+    <ion-segment scrollable>
+      <ion-segment-button value="all" checked>
+        ALL
+      </ion-segment-button>
+      <ion-segment-button value="men">MEN</ion-segment-button>
+      <ion-segment-button value="women">WOMEN</ion-segment-button>
+      <ion-segment-button value="junior">JUNIOR FANS</ion-segment-button>
+      <ion-segment-button value="club">CLUB</ion-segment-button>
+      <ion-segment-button value="academy">ACADEMY</ion-segment-button>
+      <ion-segment-button value="tickets">TICKETS</ion-segment-button>
+    </ion-segment>
+  </ion-toolbar>
 </ion-header>
 
-<ion-content>
-  <ion-segment>
-    <ion-segment-button value="all" checked>ALL</ion-segment-button>
-    <ion-segment-button value="men" checked>MEN</ion-segment-button>
-    <ion-segment-button value="women" checked>WOMEN</ion-segment-button>
-    <ion-segment-button value="junior" checked>JUNIOR FANS</ion-segment-button>
-    <ion-segment-button value="club" checked>CLUB</ion-segment-button>
-    <ion-segment-button value="academy" checked>ACADEMY</ion-segment-button>
-    <ion-segment-button value="tickets" checked>TICKETS</ion-segment-button>
-  </ion-segment>
-</ion-content>
+<ion-content> </ion-content>

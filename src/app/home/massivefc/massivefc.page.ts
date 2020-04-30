@@ -11,6 +11,7 @@ import { FixtureResultModalComponent } from "./fixture-result-modal/fixture-resu
 })
 export class MassivefcPage implements OnInit {
   articles: Article[] = [];
+  videos: Article[] = [];
   constructor(
     private homesrvc: HomeService,
     private modalCtrl: ModalController
@@ -20,6 +21,7 @@ export class MassivefcPage implements OnInit {
     // fetch articles
 
     this.articles = this.homesrvc.articles;
+    this.videos = [...this.articles.slice(1)];
     console.log(this.articles);
   }
 
