@@ -5,11 +5,11 @@
         <ion-icon name="close"></ion-icon>
       </ion-button>
     </ion-buttons>
-    <ion-title text-center>vS | {{ fixture.away }}</ion-title>
+    <ion-title text-center>vs | {{ fixture.away }}</ion-title>
   </ion-toolbar>
 </ion-header>
 
-<ion-content padding>
+<ion-content no-padding>
   <ion-grid>
     <ion-row>
       <ion-col size="12" text-center>
@@ -23,13 +23,18 @@
             >
           </ion-card-header>
           <ion-img src="{{ fixture.imageUrl }}"></ion-img>
+          <ion-card-content>
+            Lorem, ipsum dolor sit amet consectetur adipisicing elit. Recusandae
+            eaque dolorum eius. Unde eos corporis, in voluptatem itaque odit ex.
+            Aliquam dicta enim cumque amet obcaecati delectus iure. Quod,
+            obcaecati!
+          </ion-card-content>
         </ion-card>
-        <ion-card-content> </ion-card-content>
       </ion-col>
     </ion-row>
   </ion-grid>
 
-  <ion-segment>
+  <ion-segment scrollable>
     <ion-segment-button value="playByPlay" checked
       >PLAY-BY-PLAY</ion-segment-button
     >

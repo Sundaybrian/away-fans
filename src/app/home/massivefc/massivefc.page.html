@@ -11,7 +11,7 @@
   <ion-grid>
     <!-- start row news -->
     <ion-row>
-      <ion-col size="12" size-sm="8" offset-sm="2" text-center>
+      <ion-col size="12" size-sm="8" offset-sm="2" text-left>
         <h2 text-left>Latest News</h2>
         <ion-card>
           <ion-card-header>
@@ -23,17 +23,17 @@
             >
           </ion-card-header>
           <ion-img src="{{articles[0].imageUrl}}"></ion-img>
+          <ion-card-content>
+            <p>{{articles[0].subtitle}}</p>
+            <ion-button
+              fill="clear"
+              color="primary"
+              [routerLink]="['/','home','tabs','massivefc','partial-news',articles[0].id]"
+            >
+              More
+            </ion-button>
+          </ion-card-content>
         </ion-card>
-        <ion-card-content>
-          <p>{{articles[0].subtitle}}</p>
-          <ion-button
-            fill="clear"
-            color="primary"
-            [routerLink]="['/','home','tabs','massivefc','partial-news',articles[0].id]"
-          >
-            More
-          </ion-button>
-        </ion-card-content>
       </ion-col>
     </ion-row>
 
@@ -49,7 +49,7 @@
               <ion-img [src]="item.imageUrl"></ion-img>
             </ion-thumbnail>
             <ion-label>
-              <h2>{{ item.title}}</h2>
+              <h4>{{ item.title}}</h4>
               <p>{{ item.subtitle}}</p>
             </ion-label>
           </ion-item>
@@ -86,10 +86,14 @@
       <ion-col *ngFor="let video of videos" size="6">
         <ion-card>
           <ion-img [src]="video.imageUrl"></ion-img>
+          <ion-card-content>
+            <ion-card-header>
+              <ion-card-subtitle>
+                {{video.title}}
+              </ion-card-subtitle>
+            </ion-card-header>
+          </ion-card-content>
         </ion-card>
-        <ion-card-content>
-          <h6>{{video.title}}</h6>
-        </ion-card-content>
       </ion-col>
     </ion-row>
     <!-- end latest videos -->
