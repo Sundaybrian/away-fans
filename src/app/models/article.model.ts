@@ -18,3 +18,14 @@ export interface Fixture {
   away: string;
   imageUrl: string;
 }
+
+export class Ticket {
+  constructor(
+    public id: string,
+    public title: string,
+    public competition: string,
+    public subtitle: string,
+    public imageUrl: string,
+    public user: string
+  ) {}
+}
