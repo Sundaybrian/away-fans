@@ -3,6 +3,7 @@ import { AuthService } from "../services/auth.service";
 import { LoadingController } from "@ionic/angular";
 import { Router } from "@angular/router";
 import { NgForm } from "@angular/forms";
+import { format } from "url";
 
 @Component({
   selector: "app-auth",
@@ -11,6 +12,7 @@ import { NgForm } from "@angular/forms";
 })
 export class AuthPage implements OnInit {
   isLoading = false;
+  isLogin = true;
   constructor(
     private authSrvc: AuthService,
     private loadingCtrl: LoadingController,
@@ -39,7 +41,25 @@ export class AuthPage implements OnInit {
       });
   }
 
+  onSwitchAuthMode() {
+    // switching bwtn login and signup
+    this.isLogin = !this.isLogin;
+  }
+
   onSubmit(f: NgForm) {
     console.log(f);
+    if (!f.valid) {
+      return;
+    }
+
+    const email = f.value.email;
+    const password = f.value.password;
+
+    if (this.isLogin) {
+      // TODO:run login func
+      // TODO:redict to profile for more data collection
+    } else {
+      //run signup func
+    }
   }
 }
