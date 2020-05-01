@@ -2,6 +2,7 @@ import { Component, OnInit } from "@angular/core";
 import { AuthService } from "../services/auth.service";
 import { LoadingController } from "@ionic/angular";
 import { Router } from "@angular/router";
+import { NgForm } from "@angular/forms";
 
 @Component({
   selector: "app-auth",
@@ -36,5 +37,9 @@ export class AuthPage implements OnInit {
           this.router.navigateByUrl("/home/tabs/massivefc");
         }, 1500);
       });
+  }
+
+  onSubmit(f: NgForm) {
+    console.log(f);
   }
 }

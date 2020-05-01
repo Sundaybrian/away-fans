@@ -5,24 +5,72 @@
 </ion-header>
 
 <ion-content padding>
-  <ion-grid>
-    <ion-row>
-      <ion-col size="12" size-sm="8" offset-sm="2" text-center>
-        <ion-list>
-          <ion-item>
-            <ion-label position="floating">Email</ion-label>
-            <ion-input></ion-input>
-          </ion-item>
-          <ion-item>
-            <ion-label position="floating">Password</ion-label>
-            <ion-input></ion-input>
-          </ion-item>
-        </ion-list>
-      </ion-col>
-    </ion-row>
-  </ion-grid>
-
-  <ion-button (click)="onLogin()">
-    Login
-  </ion-button>
+  <form #f="ngForm" (ngSubmit)="onSubmit(f)">
+    <ion-grid>
+      <ion-row>
+        <ion-col size-sm="8" offset-sm="2" text-center>
+          <ion-list>
+            <ion-item>
+              <ion-label position="floating">Email</ion-label>
+              <ion-input
+                ngModel
+                name="email"
+                required
+                type="email"
+                #emailCtrl="ngModel"
+              ></ion-input>
+            </ion-item>
+            <!-- email validation -->
+            <ion-item
+              *ngIf="!emailCtrl.valid && emailCtrl.touched"
+              lines="none"
+            >
+              <ion-label>
+                Must be a valid email address
+              </ion-label>
+            </ion-item>
+            <!-- validation -->
+            <ion-item>
+              <ion-label position="floating">Password</ion-label>
+              <ion-input
+                ngModel
+                name="password"
+                required
+                type="password"
+                minlength="8"
+                #passwordCtrl="ngModel"
+              ></ion-input>
+            </ion-item>
+            <!-- password validation -->
+            <ion-item
+              *ngIf="!passwordCtrl.valid && passwordCtrl.touched"
+              lines="none"
+            >
+              <ion-label>
+                Must be a more than 8 characters long
+              </ion-label>
+            </ion-item>
+            <!-- validation -->
+          </ion-list>
+        </ion-col>
+      </ion-row>
+      <ion-row>
+        <ion-col size-sm="8" offset-sm="2">
+          <ion-button type="button" color="primary" fill="clear" expand="block">
+            Switch to Login
+          </ion-button>
+          <ion-button
+            type="submit"
+            (click)="onLogin()"
+            color="primary"
+            expand="block"
+            fill="outline"
+            [disabled]="!f.valid"
+          >
+            Login
+          </ion-button>
+        </ion-col>
+      </ion-row>
+    </ion-grid>
+  </form>
 </ion-content>
