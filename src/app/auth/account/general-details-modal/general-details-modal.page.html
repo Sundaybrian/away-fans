@@ -1,9 +1,12 @@
 <ion-header>
   <ion-toolbar>
-    <ion-title>general-details-modal</ion-title>
+    <ion-buttons slot="start">
+      <ion-button (click)="onCancel()">
+        <ion-icon name="close"></ion-icon>
+      </ion-button>
+    </ion-buttons>
+    <ion-title>{{ user.name}}</ion-title>
   </ion-toolbar>
 </ion-header>
 
-<ion-content>
-
-</ion-content>
+<ion-content> </ion-content>

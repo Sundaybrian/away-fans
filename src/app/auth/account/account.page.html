@@ -19,16 +19,16 @@
       </ion-col>
       <ion-col>
         <ion-list>
-          <ion-item lines="none" button>
-            <ion-icon name="briefcase" slot="end"></ion-icon>
+          <ion-item lines="none" button (click)="openModal()">
+            <ion-icon name="briefcase" slot="start"></ion-icon>
             <ion-label lines="none">General Details</ion-label>
           </ion-item>
           <ion-item lines="none" button>
-            <ion-icon name="options-outline" slot="end"></ion-icon>
+            <ion-icon name="options-outline" slot="start"></ion-icon>
             <ion-label lines="none">Preferences</ion-label>
           </ion-item>
           <ion-item lines="none" button>
-            <ion-icon name="lock-closed-outline" slot="end"></ion-icon>
+            <ion-icon name="lock-closed-outline" slot="start"></ion-icon>
             <ion-label lines="none">Password</ion-label>
           </ion-item>
         </ion-list>
