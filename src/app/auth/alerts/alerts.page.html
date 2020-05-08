@@ -1,0 +1,75 @@
+<ion-header>
+  <ion-toolbar>
+    <ion-buttons slot="start">
+      <ion-back-button defaultHref="/"></ion-back-button>
+    </ion-buttons>
+    <ion-title>Alerts</ion-title>
+  </ion-toolbar>
+</ion-header>
+
+<ion-content>
+  <ion-grid>
+    <ion-row>
+      <ion-col>
+        <ion-list>
+          <ion-list-header>
+            App notifications
+          </ion-list-header>
+          <ion-item button>
+            <ion-label>
+              Notifications & alerts
+            </ion-label>
+            <ion-toggle checked></ion-toggle>
+          </ion-item>
+        </ion-list>
+
+        <ion-list>
+          <ion-list-header>
+            Match notifications
+          </ion-list-header>
+          <ion-item button>
+            <ion-label>
+              <h4>Match updated</h4>
+              <h6>Kick off, half-time score, full-time score</h6>
+            </ion-label>
+            <ion-toggle checked></ion-toggle>
+          </ion-item>
+          <ion-item button>
+            <ion-label>
+              <h4>Goals</h4>
+              <h6>As they go in</h6>
+            </ion-label>
+            <ion-toggle checked></ion-toggle>
+          </ion-item>
+          <ion-item button>
+            <ion-label>
+              <h4>Match actions</h4>
+              <h6>As they go in</h6>
+            </ion-label>
+            <ion-toggle></ion-toggle>
+          </ion-item>
+        </ion-list>
+
+        <ion-list>
+          <ion-list-header>
+            News
+          </ion-list-header>
+          <ion-item button>
+            <ion-label>
+              <h4>First team news</h4>
+              <h6>Team news, post-match reaction</h6>
+            </ion-label>
+            <ion-toggle checked></ion-toggle>
+          </ion-item>
+          <ion-item button>
+            <ion-label>
+              <h4>Club news</h4>
+              <h6>Get the latest from the club</h6>
+            </ion-label>
+            <ion-toggle checked></ion-toggle>
+          </ion-item>
+        </ion-list>
+      </ion-col>
+    </ion-row>
+  </ion-grid>
+</ion-content>
