@@ -11,7 +11,7 @@
     <ion-content>
       <ion-list>
         <ion-menu-toggle>
-          <ion-item lines="none" detail routerLink="/account">
+          <ion-item lines="none" detail routerLink="/auth/account">
             <ion-icon name="person"></ion-icon>
             <ion-label>Account</ion-label>
           </ion-item>
@@ -61,13 +61,13 @@
 
         <ion-menu-toggle>
           <ion-item lines="none">
-            <ion-icon name="kids"></ion-icon>
+            <ion-icon name="egg-outline"></ion-icon>
             <ion-label>Junior Fans</ion-label>
           </ion-item>
         </ion-menu-toggle>
 
         <ion-menu-toggle>
-          <ion-item lines="none" detail (click)="onLogOut()" button>
+          <ion-item lines="none" (click)="onLogOut()" button>
             <ion-icon name="exit"></ion-icon>
             <ion-label>Logout</ion-label>
           </ion-item>
