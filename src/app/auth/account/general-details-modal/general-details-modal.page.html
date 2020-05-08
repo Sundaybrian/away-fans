@@ -16,7 +16,10 @@
         <ion-list>
           <ion-item>
             <ion-label position="floating">Gender</ion-label>
-            <ion-input name="gender"></ion-input>
+            <ion-select>
+              <ion-select-option value="male">Male</ion-select-option>
+              <ion-select-option value="females">Female</ion-select-option>
+            </ion-select>
           </ion-item>
           <ion-item>
             <ion-label position="floating">First name</ion-label>
@@ -24,11 +27,11 @@
           </ion-item>
           <ion-item>
             <ion-label position="floating">Last name</ion-label>
-            <ion-input name="first"></ion-input>
+            <ion-input name="last"></ion-input>
           </ion-item>
           <ion-item>
             <ion-label position="floating">Date of birth</ion-label>
-            <ion-input name="first"></ion-input>
+            <ion-datetime></ion-datetime>
           </ion-item>
           <ion-item>
             <ion-label position="floating">City</ion-label>
@@ -44,7 +47,7 @@
           </ion-item>
           <ion-item>
             <ion-label position="floating">Email</ion-label>
-            <ion-input name="first"></ion-input>
+            <ion-input name="email" type="email"></ion-input>
           </ion-item>
         </ion-list>
       </ion-col>

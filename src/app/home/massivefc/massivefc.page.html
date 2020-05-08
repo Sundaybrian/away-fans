@@ -84,16 +84,12 @@
     <h2>Latest Videos</h2>
     <ion-row>
       <ion-col *ngFor="let video of videos" size="6">
-        <ion-card>
-          <ion-img [src]="video.imageUrl"></ion-img>
-          <ion-card-content>
-            <ion-card-header>
-              <ion-card-subtitle>
-                {{video.title}}
-              </ion-card-subtitle>
-            </ion-card-header>
-          </ion-card-content>
-        </ion-card>
+        <ion-img [src]="video.imageUrl"></ion-img>
+        <ion-item lines="none">
+          <ion-label>
+            <p>{{video.title}}</p>
+          </ion-label>
+        </ion-item>
       </ion-col>
     </ion-row>
     <!-- end latest videos -->
