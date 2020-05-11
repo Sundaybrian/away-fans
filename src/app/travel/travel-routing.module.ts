@@ -28,7 +28,7 @@ const routes: Routes = [
       ),
   },
   {
-    path: "offer-item",
+    path: "offer-item/:id",
     loadChildren: () =>
       import("./offer-item/offer-item.module").then(
         (m) => m.OfferItemPageModule

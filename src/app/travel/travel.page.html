@@ -32,7 +32,7 @@
       <ion-col size-sm="8" offset-sm="2" offset-md="8" offset-md="2">
         <ion-list>
           <ion-item-sliding *ngFor="let item of vehicles" #slidingItem>
-            <ion-item>
+            <ion-item [routerLink]="['offer-item',item.id]">
               <ion-thumbnail slot="start">
                 <ion-img [src]="item.imageUrl"></ion-img>
               </ion-thumbnail>

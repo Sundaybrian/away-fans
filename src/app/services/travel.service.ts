@@ -1,5 +1,6 @@
 import { Injectable } from "@angular/core";
 import { Travel } from "../models/article.model";
+import { ThrowStmt } from "@angular/compiler";
 
 @Injectable({
   providedIn: "root",
@@ -55,6 +56,12 @@ export class TravelService {
 
   get travels() {
     return [...this._travels];
+  }
+
+  getVehicle(id: string) {
+    const temp = [...this._travels];
+    const vehicle = temp.find((item) => item.id == id);
+    return vehicle;
   }
 
   constructor() {}
