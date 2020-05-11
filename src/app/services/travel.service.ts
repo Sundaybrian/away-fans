@@ -5,7 +5,7 @@ import { Travel } from "../models/article.model";
   providedIn: "root",
 })
 export class TravelService {
-  private _travel: Travel[] = [
+  private _travels: Travel[] = [
     new Travel(
       1,
       "kbe 4678",
@@ -53,8 +53,8 @@ export class TravelService {
     ),
   ];
 
-  get travel() {
-    return [...this._travel];
+  get travels() {
+    return [...this._travels];
   }
 
   constructor() {}

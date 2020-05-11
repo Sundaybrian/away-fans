@@ -1,15 +1,25 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, OnInit } from "@angular/core";
+import { Travel } from "../models/article.model";
+import { TravelService } from "../services/travel.service";
+import { IonItemSliding } from "@ionic/angular";
 
 @Component({
-  selector: 'app-travel',
-  templateUrl: './travel.page.html',
-  styleUrls: ['./travel.page.scss'],
+  selector: "app-travel",
+  templateUrl: "./travel.page.html",
+  styleUrls: ["./travel.page.scss"],
 })
 export class TravelPage implements OnInit {
+  vehicles: Travel[] = [];
 
-  constructor() { }
+  constructor(private travel: TravelService) {}
 
   ngOnInit() {
+    // populate vehicles array
+    this.vehicles = this.travel.travels;
+    console.log(this.vehicles);
   }
 
+  onOfferEdit(id: string, slidingItem: IonItemSliding) {
+    console.log(id, slidingItem);
+  }
 }
