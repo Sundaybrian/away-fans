@@ -28,6 +28,10 @@ const routes: Routes = [
     path: 'my-tickets',
     loadChildren: () => import('./my-tickets/my-tickets.module').then( m => m.MyTicketsPageModule)
   },
+  {
+    path: 'travel',
+    loadChildren: () => import('./travel/travel.module').then( m => m.TravelPageModule)
+  },
 ];
 
 @NgModule({
