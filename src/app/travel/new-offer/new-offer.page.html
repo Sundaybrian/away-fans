@@ -5,7 +5,7 @@
     </ion-buttons>
     <ion-title>Offer Ride</ion-title>
     <ion-buttons slot="primary">
-      <ion-button (click)="onCreateOffer()">
+      <ion-button (click)="onCreateOffer()" [disabled]="!form.valid">
         <ion-icon slot="icon-only" name="checkmark"></ion-icon>
       </ion-button>
     </ion-buttons>
@@ -28,6 +28,14 @@
           </ion-item>
         </ion-col>
       </ion-row>
+      <ion-row *ngIf="!form.get('plate').valid && form.get('plate').touched">
+        <ion-col size-sm="6" offset="3">
+          <ion-item lines="none">
+            <p>Car plate must be between 1 and 16 characters</p>
+          </ion-item>
+        </ion-col>
+      </ion-row>
+      <!-- plate validation -->
       <ion-row>
         <ion-col size-sm="6" offset="3">
           <ion-item>
@@ -40,6 +48,16 @@
           </ion-item>
         </ion-col>
       </ion-row>
+      <ion-row
+        *ngIf="!form.get('description').valid && form.get('description').touched"
+      >
+        <ion-col size-sm="6" offset="3">
+          <ion-item lines="none">
+            <p>Description must be between 1 and 160 characters</p>
+          </ion-item>
+        </ion-col>
+      </ion-row>
+      <!-- desc validation -->
       <ion-row>
         <ion-col size-sm="6" offset="3">
           <ion-item>

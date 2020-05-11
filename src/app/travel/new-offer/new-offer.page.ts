@@ -15,11 +15,11 @@ export class NewOfferPage implements OnInit {
     this.form = new FormGroup({
       plate: new FormControl(null, {
         updateOn: "blur",
-        validators: [Validators.required, Validators.minLength(4)],
+        validators: [Validators.required, Validators.minLength(10)],
       }),
       description: new FormControl(null, {
         updateOn: "blur",
-        validators: [Validators.required, Validators.minLength(10)],
+        validators: [Validators.required, Validators.minLength(160)],
       }),
       price: new FormControl(null, {
         updateOn: "blur",
