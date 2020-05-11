@@ -29,3 +29,15 @@ export class Ticket {
     public user: string
   ) {}
 }
+
+export class Travel {
+  constructor(
+    public id: string,
+    public title: string,
+    public description: string,
+    public imageUrl: string,
+    public user: string,
+    public booked: boolean,
+    public capacity: number
+  ) {}
+}
