@@ -1,10 +1,10 @@
 <ion-header>
   <ion-toolbar>
     <ion-buttons slot="start">
-      <ion-back-button defaultHref="/"></ion-back-button>
+      <ion-back-button defaultHref="/travel"></ion-back-button>
     </ion-buttons>
     <ion-title>Offer Ride</ion-title>
-    <ion-buttons>
+    <ion-buttons slot="primary">
       <ion-button (click)="onCreateOffer()">
         <ion-icon slot="icon-only" name="checkmark"></ion-icon>
       </ion-button>
@@ -42,13 +42,13 @@
       <ion-col size-sm="3" offset="3">
         <ion-item>
           <ion-label position="floating">Availabe from</ion-label>
-          <ion-datetime type="date" min="" max=""></ion-datetime>
+          <ion-datetime min="2020-05-08" max="2020-06-01"></ion-datetime>
         </ion-item>
       </ion-col>
-      <ion-col size-sm="3" offset="3">
+      <ion-col size-sm="3">
         <ion-item>
           <ion-label position="floating">Availabe to</ion-label>
-          <ion-datetime type="date" min="" max=""></ion-datetime>
+          <ion-datetime min="2020-05-09" max="2020-06-01"></ion-datetime>
         </ion-item>
       </ion-col>
     </ion-row>

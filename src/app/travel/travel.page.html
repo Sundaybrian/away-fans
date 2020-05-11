@@ -1,9 +1,19 @@
 <ion-header>
   <ion-toolbar>
+    <ion-buttons slot="start">
+      <ion-back-button defaultHref="/home/tabs/massivefc"> </ion-back-button>
+    </ion-buttons>
     <ion-title>travel</ion-title>
+    <ion-buttons slot="primary">
+      <ion-button routerLink="/travel/new-offer">
+        <ion-icon slot="icon-only" name="add"></ion-icon>
+      </ion-button>
+    </ion-buttons>
   </ion-toolbar>
 </ion-header>
 
-<ion-content>
-
+<ion-content padding>
+  <ion-text>
+    offers will appear here
+  </ion-text>
 </ion-content>
