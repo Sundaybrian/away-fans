@@ -60,13 +60,11 @@
         <ion-col size-sm="6" offset-sm="3">
           <ion-item>
             <ion-label position="floating">Passengers</ion-label>
-            <ion-input
-              type="number"
-              [ngModel]="2"
-              required
-              name="passenger"
-              #passengerCtrl="ngModel"
-            ></ion-input>
+            <ion-select [ngModel]="'2'" required name="passengers">
+              <ion-select-option value="1">1</ion-select-option>
+              <ion-select-option value="2">2</ion-select-option>
+              <ion-select-option value="3">3</ion-select-option>
+            </ion-select>
           </ion-item>
         </ion-col>
       </ion-row>
@@ -75,13 +73,29 @@
         <ion-col size-sm="3" offset-sm="3">
           <ion-item>
             <ion-label position="floating">From</ion-label>
-            <ion-datetime></ion-datetime>
+            <ion-datetime
+              display-format="MMM DD YYYY"
+              required
+              name="from"
+              ngModel
+              #fromCtrl="ngModel"
+              [min]=""
+              [max]=""
+            ></ion-datetime>
           </ion-item>
         </ion-col>
         <ion-col size-sm="3">
           <ion-item>
             <ion-label position="floating">To</ion-label>
-            <ion-datetime></ion-datetime>
+            <ion-datetime
+              display-format="MMM DD YYYY"
+              required
+              name="to"
+              ngModel
+              #toCtrl="ngModel"
+              [min]="fromCtrl.value"
+              [max]=""
+            ></ion-datetime>
           </ion-item>
         </ion-col>
       </ion-row>
