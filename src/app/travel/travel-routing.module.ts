@@ -27,13 +27,6 @@ const routes: Routes = [
         (m) => m.OfferBookingPageModule
       ),
   },
-  {
-    path: "offer-item/:id",
-    loadChildren: () =>
-      import("./offer-item/offer-item.module").then(
-        (m) => m.OfferItemPageModule
-      ),
-  },
 ];
 
 @NgModule({

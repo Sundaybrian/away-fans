@@ -2,7 +2,12 @@ import { Component, OnInit } from "@angular/core";
 import { Travel } from "src/app/models/article.model";
 import { ActivatedRoute, Router } from "@angular/router";
 import { TravelService } from "src/app/services/travel.service";
-import { NavController, ActionSheetController } from "@ionic/angular";
+import {
+  NavController,
+  ActionSheetController,
+  ModalController,
+} from "@ionic/angular";
+import { OfferItemModalComponent } from "../offer-item-modal/offer-item-modal.component";
 
 @Component({
   selector: "app-offer-booking",
@@ -16,7 +21,8 @@ export class OfferBookingPage implements OnInit {
     private route: ActivatedRoute,
     private travelSrvc: TravelService,
     private navCtrl: NavController,
-    private actionSheet: ActionSheetController
+    private actionSheet: ActionSheetController,
+    private modalCtrl: ModalController
   ) {}
 
   ngOnInit() {
@@ -38,7 +44,10 @@ export class OfferBookingPage implements OnInit {
           {
             text: "Select Date",
             handler: () => {
-              console.log("select date");
+              // booking modal
+              console.log("select");
+
+              this.onBookingModal();
             },
           },
           {
@@ -56,5 +65,16 @@ export class OfferBookingPage implements OnInit {
       .then((actionEL) => {
         actionEL.present();
       });
+  }
+
+  onBookingModal() {
+    this.modalCtrl
+      .create({
+        component: OfferItemModalComponent,
+        componentProps: {
+          vehicle: this.vehicle,
+        },
+      })
+      .then((modalEL) => modalEL.present());
   }
 }
