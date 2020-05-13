@@ -21,7 +21,7 @@ const routes: Routes = [
       ),
   },
   {
-    path: "offer-booking",
+    path: "offer-booking/:id",
     loadChildren: () =>
       import("./offer-booking/offer-booking.module").then(
         (m) => m.OfferBookingPageModule

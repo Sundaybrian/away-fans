@@ -32,7 +32,7 @@
       <ion-col size-sm="8" offset-sm="2" offset-md="8" offset-md="2">
         <ion-list>
           <ion-item-sliding *ngFor="let item of vehicles" #slidingItem>
-            <ion-item [routerLink]="['offer-item',item.id]">
+            <ion-item [routerLink]="['offer-booking',item.id]">
               <ion-thumbnail slot="start">
                 <ion-img [src]="item.imageUrl"></ion-img>
               </ion-thumbnail>
@@ -46,7 +46,7 @@
                 color="secondary"
                 (click)="onOfferEdit(item.id, slidingItem)"
               >
-                <ion-icon name="pencil" slot="top"></ion-icon>
+                <ion-icon name="create" slot="top"></ion-icon>
                 Edit
               </ion-item-option>
             </ion-item-options>

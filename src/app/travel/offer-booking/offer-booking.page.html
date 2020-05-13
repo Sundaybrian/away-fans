@@ -1,9 +1,20 @@
 <ion-header>
   <ion-toolbar>
-    <ion-title>offer-booking</ion-title>
+    <ion-buttons slot="start">
+      <ion-back-button defaultHref="/travel"></ion-back-button>
+    </ion-buttons>
+    <ion-title>Book {{vehicle.title}}</ion-title>
   </ion-toolbar>
 </ion-header>
 
 <ion-content>
-
+  <ion-grid>
+    <ion-row>
+      <ion-col>
+        <ion-button color="primary" fill="solid" (click)="onBookVehicle()"
+          >Book</ion-button
+        >
+      </ion-col>
+    </ion-row>
+  </ion-grid>
 </ion-content>
