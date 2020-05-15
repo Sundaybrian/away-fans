@@ -5,7 +5,7 @@
         <ion-icon slot="icon-only" name="close"></ion-icon>
       </ion-button>
     </ion-buttons>
-    <ion-title>{{ vehicle.title }}</ion-title>
+    <ion-title>Book a seat on {{ vehicle.title }}</ion-title>
   </ion-toolbar>
 </ion-header>
 <ion-content>
@@ -79,8 +79,8 @@
               name="from"
               ngModel
               #fromCtrl="ngModel"
-              [min]=""
-              [max]=""
+              [min]="vehicle.from.toISOString()"
+              [max]="vehicle.to.toISOString()"
             ></ion-datetime>
           </ion-item>
         </ion-col>
@@ -94,7 +94,7 @@
               ngModel
               #toCtrl="ngModel"
               [min]="fromCtrl.value"
-              [max]=""
+              [max]="vehicle.to.toISOString()"
             ></ion-datetime>
           </ion-item>
         </ion-col>

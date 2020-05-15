@@ -47,13 +47,13 @@ export class OfferBookingPage implements OnInit {
               // booking modal
               console.log("select");
 
-              this.onBookingModal();
+              this.onBookingModal("select");
             },
           },
           {
             text: "Random Date",
             handler: () => {
-              console.log("random date");
+              this.onBookingModal("random");
             },
           },
           {
@@ -67,12 +67,13 @@ export class OfferBookingPage implements OnInit {
       });
   }
 
-  onBookingModal() {
+  onBookingModal(mode) {
     this.modalCtrl
       .create({
         component: OfferItemModalComponent,
         componentProps: {
           vehicle: this.vehicle,
+          mode,
         },
       })
       .then((modalEL) => modalEL.present());

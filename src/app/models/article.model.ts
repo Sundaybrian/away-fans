@@ -38,6 +38,8 @@ export class Travel {
     public imageUrl: string,
     public user: string,
     public booked: boolean,
-    public capacity: number
+    public capacity: number,
+    public from: Date,
+    public to: Date
   ) {}
 }
