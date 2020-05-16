@@ -14,7 +14,9 @@ export class TravelPage implements OnInit {
 
   constructor(private travel: TravelService, private router: Router) {}
 
-  ngOnInit() {
+  ngOnInit() {}
+
+  ionViewWillEnter() {
     // populate vehicles array
     this.vehicles = this.travel.travels;
     console.log(this.vehicles);
