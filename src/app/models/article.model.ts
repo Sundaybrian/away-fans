@@ -35,6 +35,7 @@ export class Travel {
     public id: string,
     public title: string,
     public description: string,
+    public price: number,
     public imageUrl: string,
     public user: string,
     public booked: boolean,

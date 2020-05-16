@@ -13,7 +13,7 @@ export class OfferItemModalComponent implements OnInit {
   @Input() mode: string;
   startDate: string;
   endDate: string;
-  @ViewChild("f") form: NgForm;
+  @ViewChild("f", { static: false }) form: NgForm;
 
   constructor(private modalCtrl: ModalController) {}
 

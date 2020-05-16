@@ -9,7 +9,7 @@
   </ion-toolbar>
 </ion-header>
 <ion-content>
-  <form #f="ngForm" (ngSubmit)="onBookVehicle(f)">
+  <form #f="ngForm" (ngSubmit)="onBookVehicle()">
     <ion-grid>
       <ion-row>
         <ion-col size-sm="6" offset-sm="3">
@@ -107,7 +107,7 @@
             fill="solid"
             expand="block"
             type="submit"
-            [disabled]="!f.valid"
+            [disabled]="!f.valid || !datesValid"
           >
             Book
           </ion-button>

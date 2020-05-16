@@ -81,7 +81,7 @@ export class OfferBookingPage implements OnInit {
         return modalEL.onDidDismiss();
       })
       .then((resultData) => {
-        console.log(resultData);
+        console.log(resultData.data, resultData.role);
       });
   }
 }
