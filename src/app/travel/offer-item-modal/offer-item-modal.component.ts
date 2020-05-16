@@ -1,6 +1,7 @@
-import { Component, OnInit, Input } from "@angular/core";
+import { Component, OnInit, Input, ViewChild } from "@angular/core";
 import { Travel } from "src/app/models/article.model";
 import { ModalController } from "@ionic/angular";
+import { NgForm } from "@angular/forms";
 
 @Component({
   selector: "app-offer-item-modal",
@@ -12,6 +13,7 @@ export class OfferItemModalComponent implements OnInit {
   @Input() mode: string;
   startDate: string;
   endDate: string;
+  @ViewChild("f") form: NgForm;
 
   constructor(private modalCtrl: ModalController) {}
 
@@ -39,8 +41,27 @@ export class OfferItemModalComponent implements OnInit {
     this.modalCtrl.dismiss(null, "cancel");
   }
 
-  onBookVehicle(formData) {
+  onBookVehicle() {
     // dismiss modal but send data back
-    this.modalCtrl.dismiss(formData, "cancel");
+    this.modalCtrl.dismiss(
+      {
+        bookingData: {
+          firstName: this.form.value["first"],
+          lastName: this.form.value["last"],
+          id: this.form.value["id"],
+          passengers: this.form.value["passengers"],
+          from: this.form.value["from"],
+          to: this.form.value["to"],
+        },
+      },
+      "confirm"
+    );
+  }
+
+  datesValid() {
+    const startDate = new Date(this.form.value["from"]);
+    const endDate = new Date(this.form.value["to"]);
+
+    return endDate > startDate;
   }
 }
