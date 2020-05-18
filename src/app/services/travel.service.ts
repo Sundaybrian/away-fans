@@ -1,12 +1,14 @@
 import { Injectable } from "@angular/core";
 import { Travel } from "../models/article.model";
 import { AuthService } from "./auth.service";
+import { BehaviorSubject } from "rxjs";
+import { take } from "rxjs/operators";
 
 @Injectable({
   providedIn: "root",
 })
 export class TravelService {
-  private _travels: Travel[] = [
+  private _travels = new BehaviorSubject<Travel[]>([
     new Travel(
       "1",
       "kbe 4678",
@@ -67,13 +69,12 @@ export class TravelService {
       new Date("2020-05-15"),
       new Date("2020-07-27")
     ),
-  ];
+  ]);
 
   constructor(private authService: AuthService) {}
 
   get travels() {
-    // return all vehicles for booking
-    return [...this._travels];
+    return this._travels.asObservable();
   }
 
   getVehicle(id: string) {
@@ -103,6 +104,10 @@ export class TravelService {
       from,
       to
     );
-    this._travels.push(newVehicle);
+    // subscribe to the travels subject take one obj and stop listening for future updates
+    // fetch current travels subject
+    this.travels.pipe(take(1)).subscribe((travels) => {
+      this._travels.next(travels.concat(newVehicle));
+    });
   }
 }
