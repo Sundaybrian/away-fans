@@ -3,6 +3,7 @@ import { Travel } from "../models/article.model";
 import { TravelService } from "../services/travel.service";
 import { IonItemSliding } from "@ionic/angular";
 import { Router } from "@angular/router";
+import { Observable } from "rxjs";
 
 @Component({
   selector: "app-travel",
@@ -10,16 +11,13 @@ import { Router } from "@angular/router";
   styleUrls: ["./travel.page.scss"],
 })
 export class TravelPage implements OnInit {
-  vehicles: Travel[] = [];
+  vehicles: Observable<Travel[]>;
 
   constructor(private travel: TravelService, private router: Router) {}
 
-  ngOnInit() {}
-
-  ionViewWillEnter() {
-    // populate vehicles array
+  ngOnInit() {
+    // subcribe to the travels observable
     this.vehicles = this.travel.travels;
-    console.log(this.vehicles);
   }
 
   onOfferEdit(id: string, slidingItem: IonItemSliding) {
