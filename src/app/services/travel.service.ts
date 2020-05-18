@@ -121,4 +121,32 @@ export class TravelService {
       })
     );
   }
+
+  updateVehicle(id: string, title: string, description: string) {
+    return this.travels.pipe(
+      take(1),
+      tap((travelData) => {
+        // fetch to be updated vehicle index
+        const updatedIndex = travelData.findIndex((item) => item.id == id);
+
+        const updatedVehicles = [...travelData];
+        const oldVehicle = updatedVehicles[updatedIndex];
+        updatedVehicles[updatedIndex] = new Travel(
+          oldVehicle.id,
+          title,
+          description,
+          oldVehicle.price,
+          oldVehicle.imageUrl,
+          oldVehicle.user,
+          oldVehicle.booked,
+          oldVehicle.capacity,
+          oldVehicle.from,
+          oldVehicle.to
+        );
+
+        // emit the updated array
+        this._travels.next(updatedVehicles);
+      })
+    );
+  }
 }
