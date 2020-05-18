@@ -2,6 +2,8 @@ import { Component, OnInit } from "@angular/core";
 import { Ticket } from "../models/article.model";
 import { TicketService } from "../services/ticket.service";
 import { IonItemSliding, ActionSheetController } from "@ionic/angular";
+import { SegmentChangeEventDetail } from "@ionic/core";
+import { AuthService } from "../services/auth.service";
 
 @Component({
   selector: "app-my-tickets",
@@ -10,13 +12,26 @@ import { IonItemSliding, ActionSheetController } from "@ionic/angular";
 })
 export class MyTicketsPage implements OnInit {
   tickets: Ticket[] = [];
+  relevantTickets: Ticket[] = [];
+
   constructor(
     private tcktSrvc: TicketService,
-    private actionSheet: ActionSheetController
+    private actionSheet: ActionSheetController,
+    private authService: AuthService
   ) {}
 
   ngOnInit() {
-    this.tickets = this.tcktSrvc.tickets;
+    this.tickets = this.relevantTickets = this.tcktSrvc.tickets;
+  }
+
+  onSegmentChange(event: CustomEvent<SegmentChangeEventDetail>) {
+    if (event.detail.value == "mine") {
+      this.tickets = this.relevantTickets;
+    } else {
+      this.tickets = this.relevantTickets.filter(
+        (ticket) => ticket.user != this.authService.userId
+      );
+    }
   }
 
   onTicketTrade(id: string, slidingItem: IonItemSliding) {
