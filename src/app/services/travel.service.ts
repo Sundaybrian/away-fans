@@ -2,7 +2,7 @@ import { Injectable } from "@angular/core";
 import { Travel } from "../models/article.model";
 import { AuthService } from "./auth.service";
 import { BehaviorSubject } from "rxjs";
-import { take } from "rxjs/operators";
+import { take, map } from "rxjs/operators";
 
 @Injectable({
   providedIn: "root",
@@ -74,13 +74,17 @@ export class TravelService {
   constructor(private authService: AuthService) {}
 
   get travels() {
+    // return a subcribable subject
     return this._travels.asObservable();
   }
 
   getVehicle(id: string) {
-    const temp = [...this._travels];
-    const vehicle = temp.find((item) => item.id == id);
-    return vehicle;
+    return this.travels.pipe(
+      take(1),
+      map((travelData) => {
+        return { ...travelData.find((item) => item.id == id) };
+      })
+    );
   }
 
   addVehicle(
@@ -104,10 +108,12 @@ export class TravelService {
       from,
       to
     );
+
     // subscribe to the travels subject take one obj and stop listening for future updates
     // fetch current travels subject
-    this.travels.pipe(take(1)).subscribe((travels) => {
-      this._travels.next(travels.concat(newVehicle));
+    this.travels.pipe(take(1)).subscribe((travelsData) => {
+      // add the newVehicle to the travel subject
+      this._travels.next(travelsData.concat(newVehicle));
     });
   }
 }
