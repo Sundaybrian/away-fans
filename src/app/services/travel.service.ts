@@ -113,7 +113,7 @@ export class TravelService {
     // fetch current travels subject
     return this.travels.pipe(
       take(1),
-      delay(1000),
+      delay(1500),
       tap((travelsData) => {
         // mimicing loadin data from a web server,using tap operator to use the observable in the new offer page
         // add the newVehicle to the travel subject

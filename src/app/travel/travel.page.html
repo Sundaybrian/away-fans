@@ -39,7 +39,9 @@
               <ion-label>
                 <h5>Plate: {{item.title}}</h5>
                 <h6>Capacity: {{ item.capacity }}</h6>
-                <p>{{item.from | date}} to {{item.to | date}}</p>
+                <p>
+                  {{item.from | date:'short'}} to {{item.to | date:'short'}}
+                </p>
               </ion-label>
             </ion-item>
             <ion-item-options>
