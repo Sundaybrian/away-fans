@@ -125,6 +125,7 @@ export class TravelService {
   updateVehicle(id: string, title: string, description: string) {
     return this.travels.pipe(
       take(1),
+      delay(1000),
       tap((travelData) => {
         // fetch to be updated vehicle index
         const updatedIndex = travelData.findIndex((item) => item.id == id);

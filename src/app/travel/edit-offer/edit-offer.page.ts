@@ -1,7 +1,7 @@
 import { Component, OnInit, OnDestroy } from "@angular/core";
 import { TravelService } from "src/app/services/travel.service";
-import { ActivatedRoute } from "@angular/router";
-import { NavController } from "@ionic/angular";
+import { ActivatedRoute, Router } from "@angular/router";
+import { NavController, LoadingController } from "@ionic/angular";
 import { Travel } from "../../models/article.model";
 import { FormGroup, FormControl, Validators } from "@angular/forms";
 import { Subscription } from "rxjs";
@@ -19,7 +19,9 @@ export class EditOfferPage implements OnInit, OnDestroy {
   constructor(
     private travel: TravelService,
     private route: ActivatedRoute,
-    private navCtrl: NavController
+    private navCtrl: NavController,
+    private loadingCtrl: LoadingController,
+    private router: Router
   ) {}
 
   ngOnInit() {
@@ -56,11 +58,25 @@ export class EditOfferPage implements OnInit, OnDestroy {
 
   onUpdateOffer() {
     if (!this.form.valid) {
-      console.log("failed");
-
       return;
     }
-    console.log(this.form);
+    this.loadingCtrl
+      .create({
+        message: "Updating Vehicle",
+      })
+      .then((loadingEl) => {
+        loadingEl.present();
+        this.travel
+          .updateVehicle(
+            this.vehicle.id,
+            this.form.value.plate,
+            this.form.value.description
+          )
+          .subscribe(() => {
+            loadingEl.dismiss();
+            this.router.navigateByUrl("/travel");
+          });
+      });
   }
 
   ngOnDestroy() {
