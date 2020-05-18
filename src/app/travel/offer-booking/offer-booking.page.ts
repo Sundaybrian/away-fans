@@ -1,4 +1,4 @@
-import { Component, OnInit } from "@angular/core";
+import { Component, OnInit, OnDestroy } from "@angular/core";
 import { Travel } from "src/app/models/article.model";
 import { ActivatedRoute, Router } from "@angular/router";
 import { TravelService } from "src/app/services/travel.service";
@@ -8,14 +8,16 @@ import {
   ModalController,
 } from "@ionic/angular";
 import { OfferItemModalComponent } from "../offer-item-modal/offer-item-modal.component";
+import { Subscription } from "rxjs";
 
 @Component({
   selector: "app-offer-booking",
   templateUrl: "./offer-booking.page.html",
   styleUrls: ["./offer-booking.page.scss"],
 })
-export class OfferBookingPage implements OnInit {
+export class OfferBookingPage implements OnInit, OnDestroy {
   vehicle: Travel;
+  vehicleSub: Subscription;
 
   constructor(
     private route: ActivatedRoute,
@@ -32,7 +34,11 @@ export class OfferBookingPage implements OnInit {
         this.navCtrl.navigateBack("/travel");
       }
 
-      this.vehicle = this.travelSrvc.getVehicle(paramMap.get("id"));
+      this.vehicleSub = this.travelSrvc
+        .getVehicle(paramMap.get("id"))
+        .subscribe((vehicle) => {
+          this.vehicle = vehicle;
+        });
     });
   }
 
@@ -83,5 +89,9 @@ export class OfferBookingPage implements OnInit {
       .then((resultData) => {
         console.log(resultData.data, resultData.role);
       });
+  }
+
+  ngOnDestroy() {
+    this.vehicleSub.unsubscribe();
   }
 }

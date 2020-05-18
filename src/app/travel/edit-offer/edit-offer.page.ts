@@ -1,17 +1,19 @@
-import { Component, OnInit } from "@angular/core";
+import { Component, OnInit, OnDestroy } from "@angular/core";
 import { TravelService } from "src/app/services/travel.service";
 import { ActivatedRoute } from "@angular/router";
 import { NavController } from "@ionic/angular";
 import { Travel } from "../../models/article.model";
 import { FormGroup, FormControl, Validators } from "@angular/forms";
+import { Subscription } from "rxjs";
 
 @Component({
   selector: "app-edit-offer",
   templateUrl: "./edit-offer.page.html",
   styleUrls: ["./edit-offer.page.scss"],
 })
-export class EditOfferPage implements OnInit {
+export class EditOfferPage implements OnInit, OnDestroy {
   vehicle: Travel;
+  vehicleSub: Subscription;
   form: FormGroup;
 
   constructor(
@@ -28,7 +30,11 @@ export class EditOfferPage implements OnInit {
         return;
       }
       //populate vehice
-      this.vehicle = this.travel.getVehicle(paramMap.get("id"));
+      this.vehicleSub = this.travel
+        .getVehicle(paramMap.get("id"))
+        .subscribe((vehicle) => {
+          this.vehicle = vehicle;
+        });
 
       // populate edit form
       this.form = new FormGroup({
@@ -55,5 +61,9 @@ export class EditOfferPage implements OnInit {
       return;
     }
     console.log(this.form);
+  }
+
+  ngOnDestroy() {
+    this.vehicleSub.unsubscribe();
   }
 }
