@@ -39,7 +39,7 @@ export class TravelService {
       "lorem lorem lorem",
       129.99,
       "https://images.pexels.com/photos/1149137/pexels-photo-1149137.jpeg?auto=compress&cs=tinysrgb&dpr=1&w=500",
-      "abc",
+      "xyz",
       false,
       5,
       new Date("2020-05-15"),

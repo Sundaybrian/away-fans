@@ -10,22 +10,18 @@
       </ion-button>
     </ion-buttons>
   </ion-toolbar>
+  <ion-toolbar>
+    <ion-segment scrollable (ionChange)="onSegmentChanged($event)">
+      <ion-segment-button value="all" checked>All Offers</ion-segment-button>
+      <ion-segment-button value="bookable">Bookable</ion-segment-button>
+    </ion-segment>
+  </ion-toolbar>
 </ion-header>
 
 <ion-content padding>
   <ion-grid>
     <ion-row>
-      <ion-col size-sm="8" offset-sm="2">
-        <ion-segment>
-          <ion-segment-button value="my-offer" checked
-            >My Offers</ion-segment-button
-          >
-          <ion-segment-button value="bookable">Bookable</ion-segment-button>
-          <ion-segment-button value="my-bookings"
-            >My Bookings</ion-segment-button
-          >
-        </ion-segment>
-      </ion-col>
+      <ion-col size-sm="8" offset-sm="2"> </ion-col>
     </ion-row>
 
     <ion-row>
