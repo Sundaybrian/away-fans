@@ -34,23 +34,23 @@ export class EditOfferPage implements OnInit, OnDestroy {
         .getVehicle(paramMap.get("id"))
         .subscribe((vehicle) => {
           this.vehicle = vehicle;
-        });
 
-      // populate edit form
-      this.form = new FormGroup({
-        plate: new FormControl(this.vehicle.title, {
-          updateOn: "blur",
-          validators: [Validators.required, Validators.minLength(6)],
-        }),
-        description: new FormControl(this.vehicle.description, {
-          updateOn: "blur",
-          validators: [Validators.required, Validators.maxLength(160)],
-        }),
-        // price: new FormControl(null, {
-        //   updateOn: "blur",
-        //   validators: [Validators.required, Validators.min(1)],
-        // }),
-      });
+          // populate edit form
+          this.form = new FormGroup({
+            plate: new FormControl(this.vehicle.title, {
+              updateOn: "blur",
+              validators: [Validators.required, Validators.minLength(6)],
+            }),
+            description: new FormControl(this.vehicle.description, {
+              updateOn: "blur",
+              validators: [Validators.required, Validators.maxLength(160)],
+            }),
+            // price: new FormControl(null, {
+            //   updateOn: "blur",
+            //   validators: [Validators.required, Validators.min(1)],
+            // }),
+          });
+        });
     });
   }
 

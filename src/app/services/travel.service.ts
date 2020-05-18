@@ -2,7 +2,7 @@ import { Injectable } from "@angular/core";
 import { Travel } from "../models/article.model";
 import { AuthService } from "./auth.service";
 import { BehaviorSubject } from "rxjs";
-import { take, map } from "rxjs/operators";
+import { take, map, tap, delay } from "rxjs/operators";
 
 @Injectable({
   providedIn: "root",
@@ -111,9 +111,14 @@ export class TravelService {
 
     // subscribe to the travels subject take one obj and stop listening for future updates
     // fetch current travels subject
-    this.travels.pipe(take(1)).subscribe((travelsData) => {
-      // add the newVehicle to the travel subject
-      this._travels.next(travelsData.concat(newVehicle));
-    });
+    return this.travels.pipe(
+      take(1),
+      delay(1000),
+      tap((travelsData) => {
+        // mimicing loadin data from a web server,using tap operator to use the observable in the new offer page
+        // add the newVehicle to the travel subject
+        this._travels.next(travelsData.concat(newVehicle));
+      })
+    );
   }
 }

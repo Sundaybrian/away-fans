@@ -32,6 +32,7 @@ export class OfferBookingPage implements OnInit, OnDestroy {
       if (!paramMap.has("id")) {
         // if no id of the offer redirect back
         this.navCtrl.navigateBack("/travel");
+        return;
       }
 
       this.vehicleSub = this.travelSrvc
