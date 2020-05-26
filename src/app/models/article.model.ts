@@ -1,11 +1,10 @@
-export class Article {
-  constructor(
-    public id: string,
-    public title: string,
-    public subtitle: string,
-    public description: string,
-    public imageUrl: string
-  ) {}
+export interface Article {
+  _id: string;
+  title: string;
+  url: string;
+  imageUrl: string;
+  subtitle?: string;
+  description?: string;
 }
 
 export interface Fixture {

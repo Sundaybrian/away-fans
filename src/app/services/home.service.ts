@@ -1,38 +1,34 @@
 import { Injectable } from "@angular/core";
 import { Article } from "../models/article.model";
 import items from "../../assets/articles";
+import { environment } from "src/environments/environment";
+import { HttpClient, HttpHeaders } from "@angular/common/http";
+
+let url = environment.baseUrl;
 
 @Injectable({
   providedIn: "root",
 })
 export class HomeService {
   // tslint:disable-next-line: variable-name
-  private _articles: Article[] = [];
+  _articles: Article[] = [];
+
+  constructor(private http: HttpClient) {
+    // populate articles array
+    this.getArticles();
+  }
 
   get articles() {
     return [...this._articles];
   }
 
-  generateArticles(arr) {
-    // looping the exported local data to create articles
-    this._articles = arr.map((item) => {
-      return new Article(
-        item.id,
-        item.title,
-        item.subtitle,
-        item.description,
-        item.imageUrl
-      );
-    });
-  }
-
-  constructor() {
-    // populate articles array
-    this.generateArticles(items);
-  }
-
   getArticle(id: string) {
     // fetch a single article
-    return { ...this._articles.find((a) => a.id === id) };
+    return { ...this._articles.find((a) => a._id === id) };
+  }
+
+  getArticles() {
+    // fetch all articles
+    return this.http.get(`${url}/clubArticles`);
   }
 }

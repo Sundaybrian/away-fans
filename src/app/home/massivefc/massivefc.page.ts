@@ -12,6 +12,7 @@ import { FixtureResultModalComponent } from "./fixture-result-modal/fixture-resu
 export class MassivefcPage implements OnInit {
   articles: Article[] = [];
   videos: Article[] = [];
+  isLoading = true;
   constructor(
     private homesrvc: HomeService,
     private modalCtrl: ModalController
@@ -20,9 +21,16 @@ export class MassivefcPage implements OnInit {
   ngOnInit() {
     // fetch articles
 
-    this.articles = this.homesrvc.articles;
-    this.videos = [...this.articles.slice(1)];
-    console.log(this.articles);
+    this.homesrvc
+      .getArticles()
+      .toPromise()
+      .then((res: Article[]) => {
+        this.articles = res;
+        this.homesrvc._articles = res;
+        this.videos = [...this.articles.slice(18)];
+        this.isLoading = false;
+        console.log(this.articles, "-------");
+      });
   }
 
   openModal() {

@@ -8,7 +8,7 @@
 </ion-header>
 
 <ion-content padding>
-  <ion-grid>
+  <ion-grid *ngIf="articles && !isLoading">
     <!-- start row news -->
     <ion-row>
       <ion-col size="12" size-sm="8" offset-sm="2" text-left>
@@ -18,17 +18,14 @@
             <ion-card-title>
               {{articles[0].title}}
             </ion-card-title>
-            <ion-card-subtitle
-              >sat 2nd May - 1700, MassiveDynamics Arena</ion-card-subtitle
-            >
           </ion-card-header>
-          <ion-img src="{{articles[0].imageUrl}}"></ion-img>
+          <ion-img src="{{articles[0]?.imageUrl}}"></ion-img>
           <ion-card-content>
             <p>{{articles[0].subtitle}}</p>
             <ion-button
               fill="clear"
               color="primary"
-              [routerLink]="['/','home','tabs','massivefc','partial-news',articles[0].id]"
+              [routerLink]="['/','home','tabs','massivefc','partial-news',articles[0]._id]"
             >
               More
             </ion-button>
@@ -43,10 +40,10 @@
           <ion-item
             *ngFor="let item of articles.slice(1)"
             detail
-            [routerLink]="['/','home','tabs','massivefc','partial-news',item.id]"
+            [routerLink]="['/','home','tabs','massivefc','partial-news',item._id]"
           >
             <ion-thumbnail slot="start">
-              <ion-img [src]="item.imageUrl"></ion-img>
+              <ion-img [src]="item?.imageUrl"></ion-img>
             </ion-thumbnail>
             <ion-label>
               <h4>{{ item.title}}</h4>
@@ -64,14 +61,14 @@
       <ion-col size="12" size-sm="8" offset-sm="2">
         <ion-card (click)="openModal()">
           <ion-card-header>
-            <ion-card-title>
+            <!-- <ion-card-title>
               sat 2nd May-1700 Massive Stadium
-            </ion-card-title>
+            </ion-card-title> -->
             <ion-card-subtitle>
               Super League
             </ion-card-subtitle>
           </ion-card-header>
-          <ion-img src="{{articles[0].imageUrl}}"></ion-img>
+          <ion-img src="{{articles[0]?.imageUrl}}"></ion-img>
           <ion-card-content>
             <ion-button fill="clear" color="primary">News & Video </ion-button>
           </ion-card-content>
@@ -84,7 +81,7 @@
     <h2>Latest Videos</h2>
     <ion-row>
       <ion-col *ngFor="let video of videos" size="6">
-        <ion-img [src]="video.imageUrl"></ion-img>
+        <ion-img [src]="video?.imageUrl"></ion-img>
         <ion-item lines="none">
           <ion-label>
             <p>{{video.title}}</p>
@@ -101,16 +98,16 @@
         <ion-card (click)="openModal()">
           <ion-card-header>
             <ion-card-title>
-              sat 7th May-1800 Massive Stadium
+              {{articles[articles.length-1].title}}
             </ion-card-title>
             <ion-card-subtitle>
-              Super League
+              Kpl League
             </ion-card-subtitle>
           </ion-card-header>
-          <ion-img src="{{articles[0].imageUrl}}"></ion-img>
+          <ion-img src="{{articles[articles.length-1]?.imageUrl}}"></ion-img>
           <ion-card-content text-left>
             <ion-text>
-              vs Alliance Fc 1-0
+              {{articles[articles.length-1].title}}
             </ion-text>
             <ion-button fill="clear" color="primary" detail>
               News & Video
@@ -120,5 +117,12 @@
       </ion-col>
     </ion-row>
     <!-- end row next fixture -->
+  </ion-grid>
+  <ion-grid *ngIf="isLoading">
+    <ion-row>
+      <ion-col text-center>
+        <ion-spinner color="primary" name="bubbles"></ion-spinner>
+      </ion-col>
+    </ion-row>
   </ion-grid>
 </ion-content>
