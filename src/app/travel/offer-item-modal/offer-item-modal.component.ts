@@ -49,9 +49,9 @@ export class OfferItemModalComponent implements OnInit {
           firstName: this.form.value["first"],
           lastName: this.form.value["last"],
           id: this.form.value["id"],
-          passengers: this.form.value["passengers"],
-          from: this.form.value["from"],
-          to: this.form.value["to"],
+          passengers: +this.form.value["passengers"],
+          from: new Date(this.form.value["from"]),
+          to: new Date(this.form.value["to"]),
         },
       },
       "confirm"

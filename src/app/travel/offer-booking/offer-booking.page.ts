@@ -6,6 +6,7 @@ import {
   NavController,
   ActionSheetController,
   ModalController,
+  LoadingController,
 } from "@ionic/angular";
 import { OfferItemModalComponent } from "../offer-item-modal/offer-item-modal.component";
 import { Subscription } from "rxjs";
@@ -26,7 +27,8 @@ export class OfferBookingPage implements OnInit, OnDestroy {
     private navCtrl: NavController,
     private actionSheet: ActionSheetController,
     private modalCtrl: ModalController,
-    private bookingSrvc: BookingService
+    private bookingSrvc: BookingService,
+    private loadingCtrl: LoadingController
   ) {}
 
   ngOnInit() {
@@ -90,7 +92,31 @@ export class OfferBookingPage implements OnInit, OnDestroy {
         return modalEL.onDidDismiss();
       })
       .then((resultData) => {
-        console.log(resultData.data, resultData.role);
+        // after submitiing the form in the modal
+        this.loadingCtrl
+          .create({
+            message: "Booking Vehicle...",
+          })
+          .then((loadingEl) => {
+            loadingEl.present();
+
+            if (resultData.role == "confirm") {
+              this.bookingSrvc
+                .addBooking(
+                  this.vehicle.id,
+                  this.vehicle.title,
+                  this.vehicle.imageUrl,
+                  resultData.data.firstName,
+                  resultData.data.lastName,
+                  resultData.data.capacity,
+                  resultData.data.from,
+                  resultData.data.to
+                )
+                .subscribe(() => {
+                  loadingEl.dismiss();
+                });
+            }
+          });
       });
   }
 
