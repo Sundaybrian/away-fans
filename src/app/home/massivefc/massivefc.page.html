@@ -8,14 +8,14 @@
 </ion-header>
 
 <ion-content padding>
-  <ion-grid *ngIf="articles && !isLoading">
+  <ion-grid *ngIf="articles && !isLoading" no-padding>
     <!-- start row news -->
     <ion-list>
       <ion-list-header>
         <h2>Latest News</h2>
       </ion-list-header>
       <ion-row>
-        <ion-col size="12" size-md="8" offset-md="2" text-left>
+        <ion-col size="12" size-md="8" offset-md="2" text-left no-padding>
           <ion-card>
             <ion-img src="{{articles[0]?.imageUrl}}"></ion-img>
             <ion-card-content>
@@ -24,6 +24,8 @@
                   {{articles[0].title}}
                 </ion-card-title>
               </ion-card-header>
+            </ion-card-content>
+            <div>
               <ion-button
                 fill="clear"
                 color="primary"
@@ -31,11 +33,12 @@
               >
                 More
               </ion-button>
-            </ion-card-content>
+            </div>
           </ion-card>
         </ion-col>
       </ion-row>
     </ion-list>
+
     <ion-list>
       <ion-item
         *ngFor="let item of articles.slice(1,6)"
@@ -46,7 +49,7 @@
           <ion-img [src]="item?.imageUrl"></ion-img>
         </ion-thumbnail>
         <ion-label>
-          <h4>{{ item.title}}</h4>
+          <h2>{{ item.title}}</h2>
           <p>{{ item.subtitle}}</p>
         </ion-label>
       </ion-item>
@@ -132,7 +135,7 @@
 
   <ion-grid *ngIf="isLoading">
     <ion-row>
-      <ion-col text-center>
+      <ion-col size-sm="6" offset-sm="3" text-center>
         <ion-spinner color="primary" name="bubbles"></ion-spinner>
       </ion-col>
     </ion-row>

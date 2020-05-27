@@ -43,3 +43,18 @@ export class Travel {
     public to: Date
   ) {}
 }
+
+export class Booking {
+  constructor(
+    public id: string,
+    public vehicleId: string,
+    public userId: string,
+    public title: string,
+    public imageUrl: string,
+    public capacity: number,
+    public firstName: string,
+    public lastName: string,
+    public from: Date,
+    public to: Date
+  ) {}
+}

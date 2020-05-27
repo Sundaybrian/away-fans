@@ -9,6 +9,7 @@ import {
 } from "@ionic/angular";
 import { OfferItemModalComponent } from "../offer-item-modal/offer-item-modal.component";
 import { Subscription } from "rxjs";
+import { BookingService } from "src/app/services/booking.service";
 
 @Component({
   selector: "app-offer-booking",
@@ -24,7 +25,8 @@ export class OfferBookingPage implements OnInit, OnDestroy {
     private travelSrvc: TravelService,
     private navCtrl: NavController,
     private actionSheet: ActionSheetController,
-    private modalCtrl: ModalController
+    private modalCtrl: ModalController,
+    private bookingSrvc: BookingService
   ) {}
 
   ngOnInit() {
