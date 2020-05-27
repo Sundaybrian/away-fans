@@ -11,6 +11,7 @@ import {
 import { OfferItemModalComponent } from "../offer-item-modal/offer-item-modal.component";
 import { Subscription } from "rxjs";
 import { BookingService } from "src/app/services/booking.service";
+import { AuthService } from "src/app/services/auth.service";
 
 @Component({
   selector: "app-offer-booking",
@@ -20,6 +21,7 @@ import { BookingService } from "src/app/services/booking.service";
 export class OfferBookingPage implements OnInit, OnDestroy {
   vehicle: Travel;
   vehicleSub: Subscription;
+  isBookable = false;
 
   constructor(
     private route: ActivatedRoute,
@@ -28,7 +30,8 @@ export class OfferBookingPage implements OnInit, OnDestroy {
     private actionSheet: ActionSheetController,
     private modalCtrl: ModalController,
     private bookingSrvc: BookingService,
-    private loadingCtrl: LoadingController
+    private loadingCtrl: LoadingController,
+    private authService: AuthService
   ) {}
 
   ngOnInit() {
@@ -43,6 +46,8 @@ export class OfferBookingPage implements OnInit, OnDestroy {
         .getVehicle(paramMap.get("id"))
         .subscribe((vehicle) => {
           this.vehicle = vehicle;
+          // checking if vehicle is yours so you dont book it
+          this.isBookable = this.vehicle.user != this.authService.userId;
         });
     });
   }
