@@ -7,7 +7,7 @@
   </ion-toolbar>
 </ion-header>
 
-<ion-content padding>
+<ion-content no-padding>
   <ion-grid *ngIf="articles && !isLoading" no-padding>
     <!-- start row news -->
     <ion-list>
@@ -25,7 +25,7 @@
                 </ion-card-title>
               </ion-card-header>
             </ion-card-content>
-            <div>
+            <div text-left>
               <ion-button
                 fill="clear"
                 color="primary"
@@ -113,7 +113,7 @@
       <ion-grid>
         <ion-row>
           <ion-col size="12" size-sm="8" offset-sm="2">
-            <ion-card (click)="openModal()">
+            <ion-card (click)="openModal(articles[articles.length-1])">
               <ion-img
                 src="{{articles[articles.length-1]?.imageUrl}}"
               ></ion-img>

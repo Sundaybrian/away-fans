@@ -1,6 +1,6 @@
 import { Component, OnInit, Input } from "@angular/core";
 import { ModalController } from "@ionic/angular";
-import { Fixture } from "src/app/models/article.model";
+import { Fixture, Article } from "src/app/models/article.model";
 
 @Component({
   selector: "app-fixture-result-modal",
@@ -8,7 +8,7 @@ import { Fixture } from "src/app/models/article.model";
   styleUrls: ["./fixture-result-modal.component.scss"],
 })
 export class FixtureResultModalComponent implements OnInit {
-  @Input() fixture: Fixture;
+  @Input() fixture: Article;
 
   constructor(private modalCtrl: ModalController) {}
 

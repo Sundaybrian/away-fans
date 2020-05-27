@@ -33,25 +33,18 @@ export class MassivefcPage implements OnInit {
       });
   }
 
-  openModal() {
+  openModal(fixture: Article) {
     // will open a modal for the result/latest cards
     this.modalCtrl
       .create({
         component: FixtureResultModalComponent,
         componentProps: {
-          fixture: {
-            id: "1",
-            date: "sat 2nd May - 1700",
-            stadium: "GiveMeAJobo Stadium",
-            logoHome: "",
-            logoAway: "",
-            home: "MassiveFc",
-            away: "Kariobangi si sharks",
-          },
+          fixture,
         },
       })
       .then((modalEl) => {
         modalEl.present();
+        return modalEl.onDidDismiss();
       });
   }
 }
