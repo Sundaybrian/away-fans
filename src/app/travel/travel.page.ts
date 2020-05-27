@@ -1,10 +1,10 @@
-import { Component, OnInit } from "@angular/core";
+import { Component, OnInit, OnDestroy } from "@angular/core";
 import { Travel } from "../models/article.model";
 import { TravelService } from "../services/travel.service";
 import { SegmentChangeEventDetail } from "@ionic/core";
 import { IonItemSliding } from "@ionic/angular";
 import { Router } from "@angular/router";
-import { Observable } from "rxjs";
+import { Observable, Subscription } from "rxjs";
 import { take, map } from "rxjs/operators";
 import { AuthService } from "../services/auth.service";
 
@@ -13,9 +13,10 @@ import { AuthService } from "../services/auth.service";
   templateUrl: "./travel.page.html",
   styleUrls: ["./travel.page.scss"],
 })
-export class TravelPage implements OnInit {
-  vehicles: Observable<Travel[]>;
-  relevantVehicles: Observable<Travel[]>;
+export class TravelPage implements OnInit, OnDestroy {
+  vehicles: Travel[];
+  relevantVehicles: Travel[];
+  vehiclesSub: Subscription;
 
   constructor(
     private travel: TravelService,
@@ -25,7 +26,11 @@ export class TravelPage implements OnInit {
 
   ngOnInit() {
     // subcribe to the travels observable
-    this.vehicles = this.relevantVehicles = this.travel.travels;
+    this.vehiclesSub = this.travel.travels.subscribe((data) => {
+      console.log(data);
+      this.vehicles = data;
+      this.relevantVehicles = data;
+    });
   }
 
   onSegmentChanged(e: CustomEvent<SegmentChangeEventDetail>) {
@@ -34,13 +39,8 @@ export class TravelPage implements OnInit {
       this.vehicles = this.relevantVehicles;
     } else {
       // create a new observable that returns a filtered data stream of vehicles
-      this.vehicles = this.relevantVehicles.pipe(
-        take(1),
-        map((vehiclesData: Travel[]) => {
-          return vehiclesData.filter(
-            (vehicle) => vehicle.user != this.authService.userId
-          );
-        })
+      this.vehicles = this.relevantVehicles.filter(
+        (vehicle) => vehicle.user != this.authService.userId
       );
     }
   }
@@ -50,5 +50,9 @@ export class TravelPage implements OnInit {
     slidingItem.close();
 
     this.router.navigateByUrl(`/travel/edit-offer/${id}`);
+  }
+
+  ngOnDestroy() {
+    this.vehiclesSub.unsubscribe();
   }
 }
