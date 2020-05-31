@@ -5,7 +5,7 @@
         <ion-icon name="close"></ion-icon>
       </ion-button>
     </ion-buttons>
-    <ion-title text-center>vs | {{ fixture.title }}</ion-title>
+    <ion-title text-center>{{ fixture.title }}</ion-title>
   </ion-toolbar>
 </ion-header>
 
@@ -16,7 +16,7 @@
         <ion-card>
           <ion-card-header>
             <ion-card-title>
-              {{ fixture.title }} v {{ fixture.title }}
+              {{ fixture.title }}
             </ion-card-title>
             <!-- <ion-card-subtitle text-left
               >{{ fixture.date }} {{ fixture.stadium }}</ion-card-subtitle
@@ -24,10 +24,7 @@
           </ion-card-header>
           <ion-img src="{{ fixture.imageUrl }}"></ion-img>
           <ion-card-content>
-            Lorem, ipsum dolor sit amet consectetur adipisicing elit. Recusandae
-            eaque dolorum eius. Unde eos corporis, in voluptatem itaque odit ex.
-            Aliquam dicta enim cumque amet obcaecati delectus iure. Quod,
-            obcaecati!
+            {{ fixture.excerpt }}
           </ion-card-content>
         </ion-card>
       </ion-col>

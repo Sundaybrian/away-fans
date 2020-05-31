@@ -11,6 +11,7 @@ import { HomeService } from "src/app/services/home.service";
 })
 export class PartialNewsPage implements OnInit {
   article: Article;
+  relatedArticles: Article[] = [];
 
   constructor(
     private route: ActivatedRoute,
@@ -28,6 +29,13 @@ export class PartialNewsPage implements OnInit {
       }
       // getting a single article
       this.article = this.homeSrvc.getArticle(paramMap.get("partial-news"));
+
+      // adding related articles but removing the current article we are reading
+      this.relatedArticles = [
+        ...this.homeSrvc.articles.filter(
+          (item) => item._id != paramMap.get("partial-news")
+        ),
+      ];
     });
   }
 }

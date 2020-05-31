@@ -4,7 +4,7 @@ export interface Article {
   url: string;
   imageUrl: string;
   subtitle?: string;
-  description?: string;
+  excerpt?: string;
 }
 
 export interface Fixture {

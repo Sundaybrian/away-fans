@@ -24,13 +24,18 @@ export class MassivefcPage implements OnInit {
     this.homesrvc
       .getArticles()
       .toPromise()
-      .then((res: Article[]) => {
-        this.articles = res;
-        this.homesrvc._articles = res;
-        this.videos = [...this.articles.slice(18)];
+      .then((res) => {
+        console.log(res["results"]);
+
+        this.articles = res["results"];
+        this.homesrvc._articles = this.articles;
         this.isLoading = false;
-        console.log(this.articles, "-------");
       });
+
+    // fetch videos
+    // this.homesrvc.getVideos().toPromise().then(res => {
+    //   this.vide
+    // })
   }
 
   openModal(fixture: Article) {

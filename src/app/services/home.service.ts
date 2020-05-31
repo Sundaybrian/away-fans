@@ -27,8 +27,11 @@ export class HomeService {
     return { ...this._articles.find((a) => a._id === id) };
   }
 
-  getArticles() {
+  getArticles(page = 1, limit = 5, sort_by = "-scrappedDate") {
     // fetch all articles
-    return this.http.get(`${url}/clubArticles`);
+    // the params are page. limit , category are all optional
+    return this.http.get(
+      `${url}/clubArticles?page=${page}&limit=${limit}&sorty_by=${sort_by}`
+    );
   }
 }

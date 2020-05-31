@@ -41,7 +41,7 @@
 
     <ion-list>
       <ion-item
-        *ngFor="let item of articles.slice(1,6)"
+        *ngFor="let item of articles.slice(1)"
         detail
         [routerLink]="['/','home','tabs','massivefc','partial-news',item._id]"
       >
@@ -54,7 +54,7 @@
         </ion-label>
       </ion-item>
     </ion-list>
-    <!-- end row news -->
+    <!-- =================== end row news ===========================-->
 
     <!-- start row fixture -->
     <ion-list>
@@ -121,10 +121,12 @@
                 <ion-text>
                   {{articles[articles.length-1].title}}
                 </ion-text>
-                <ion-button fill="clear" color="primary" detail>
-                  News & Video
-                </ion-button>
               </ion-card-content>
+              <div text-left>
+                <ion-button fill="clear" color="primary" detail>
+                  More
+                </ion-button>
+              </div>
             </ion-card>
           </ion-col>
         </ion-row>
