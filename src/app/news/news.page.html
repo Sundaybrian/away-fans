@@ -20,4 +20,62 @@
   </ion-toolbar>
 </ion-header>
 
-<ion-content> </ion-content>
+<ion-content>
+  <!-- start row news -->
+  <ion-list *ngIf="articles && !isLoading">
+    <ion-list-header>
+      <h2>{{articles[0]?.scrappedDate |date:"short" }}</h2>
+    </ion-list-header>
+    <ion-row>
+      <ion-col size="12" size-md="8" offset-md="2" text-left no-padding>
+        <ion-card>
+          <ion-img src="{{articles[0]?.imageUrl}}"></ion-img>
+          <ion-card-content>
+            <ion-card-header>
+              <ion-card-title>
+                {{articles[0].title}}
+              </ion-card-title>
+            </ion-card-header>
+          </ion-card-content>
+          <div text-left>
+            <ion-button
+              fill="clear"
+              color="primary"
+              [routerLink]="['/','home','tabs','news','news-detail',articles[0]._id]"
+            >
+              More
+            </ion-button>
+          </div>
+        </ion-card>
+      </ion-col>
+    </ion-row>
+  </ion-list>
+
+  <ion-list>
+    <ion-list-header>
+      <ion-label> <h2>Latest Videos</h2></ion-label>
+    </ion-list-header>
+    <ion-grid>
+      <ion-row>
+        <ion-col *ngFor="let article of articles " size="6">
+          <video #player playsinline preload="auto">
+            <source [src]="video.url" type="video/mp4" />
+          </video>
+          <ion-label class="ion-text-wrap">
+            <p>{{video.title}}</p>
+          </ion-label>
+          <ion-item lines="none"> </ion-item>
+        </ion-col>
+      </ion-row>
+    </ion-grid>
+  </ion-list>
+  <!-- end latest videos -->
+
+  <ion-grid *ngIf="isLoading" margin-vertical="50%">
+    <ion-row>
+      <ion-col size-sm="6" offset-sm="3" text-center>
+        <ion-spinner color="primary" name="bubbles"></ion-spinner>
+      </ion-col>
+    </ion-row>
+  </ion-grid>
+</ion-content>

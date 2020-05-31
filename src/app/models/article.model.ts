@@ -5,6 +5,7 @@ export interface Article {
   imageUrl: string;
   subtitle?: string;
   excerpt?: string;
+  scrappedDate: Date;
 }
 
 export interface Video {

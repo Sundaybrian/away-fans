@@ -23,6 +23,10 @@ const routes: Routes = [
   {
     path: 'junior-fans',
     loadChildren: () => import('./junior-fans/junior-fans.module').then( m => m.JuniorFansPageModule)
+  },
+  {
+    path: 'news-detail',
+    loadChildren: () => import('./news-detail/news-detail.module').then( m => m.NewsDetailPageModule)
   }
 ];
 
