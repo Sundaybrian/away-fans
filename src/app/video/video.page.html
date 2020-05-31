@@ -15,4 +15,45 @@
   </ion-toolbar>
 </ion-header>
 
-<ion-content> </ion-content>
+<ion-content>
+  <ion-grid *ngIf="videos && !isLoading" no-padding>
+    <ion-list>
+      <ion-list-header>
+        <h2></h2>
+      </ion-list-header>
+      <ion-row>
+        <ion-col size="12" size-md="8" offset-md="2" text-left no-padding>
+          <ion-card>
+            <ion-img src="{{videos[0]?.thumbnail }}"></ion-img>
+            <ion-card-content>
+              <ion-card-header>
+                <ion-card-title>
+                  {{videos[0].title}}
+                </ion-card-title>
+              </ion-card-header>
+            </ion-card-content>
+          </ion-card>
+        </ion-col>
+      </ion-row>
+    </ion-list>
+  </ion-grid>
+
+  <ion-list>
+    <ion-list-header>
+      <ion-label> <h2>Latest Videos</h2></ion-label>
+    </ion-list-header>
+    <ion-grid>
+      <ion-row>
+        <ion-col *ngFor="let video of videos.slice(1)" size="6">
+          <ion-img [src]="video?.thumbnail"></ion-img>
+          <ion-item lines="none">
+            <ion-label>
+              <p>{{video.title}}</p>
+            </ion-label>
+          </ion-item>
+        </ion-col>
+      </ion-row>
+    </ion-grid>
+  </ion-list>
+  <!-- end latest videos -->
+</ion-content>
