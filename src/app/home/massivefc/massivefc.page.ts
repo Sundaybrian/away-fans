@@ -11,6 +11,7 @@ import { FixtureResultModalComponent } from "./fixture-result-modal/fixture-resu
 })
 export class MassivefcPage implements OnInit {
   articles: Article[] = [];
+  items: Article[] = [];
   videos: Video[] = [];
   isLoading = true;
   constructor(
@@ -26,6 +27,7 @@ export class MassivefcPage implements OnInit {
       .toPromise()
       .then((res) => {
         this.articles = res["results"];
+        this.items = this.articles.slice(1);
         this.homesrvc._articles = this.articles;
         this.isLoading = false;
       });

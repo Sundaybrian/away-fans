@@ -39,9 +39,9 @@
       </ion-row>
     </ion-list>
 
-    <ion-list>
+    <ion-virtual-scroll [items]="items" approxItemHeight="100px">
       <ion-item
-        *ngFor="let item of articles.slice(1)"
+        *virtualItem="let item"
         button
         [routerLink]="['/','home','tabs','massivefc','partial-news',item._id]"
       >
@@ -52,7 +52,7 @@
           <h4>{{ item.title}}</h4>
         </ion-label>
       </ion-item>
-    </ion-list>
+    </ion-virtual-scroll>
     <!-- =================== end row news ===========================-->
 
     <!-- ***********************start row fixture ************************-->
