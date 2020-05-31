@@ -1,5 +1,5 @@
 import { Component, OnInit } from "@angular/core";
-import { Article, Fixture } from "src/app/models/article.model";
+import { Article, Fixture, Video } from "src/app/models/article.model";
 import { HomeService } from "src/app/services/home.service";
 import { ModalController } from "@ionic/angular";
 import { FixtureResultModalComponent } from "./fixture-result-modal/fixture-result-modal.component";
@@ -11,7 +11,7 @@ import { FixtureResultModalComponent } from "./fixture-result-modal/fixture-resu
 })
 export class MassivefcPage implements OnInit {
   articles: Article[] = [];
-  videos: Article[] = [];
+  videos: Video[] = [];
   isLoading = true;
   constructor(
     private homesrvc: HomeService,
@@ -25,17 +25,19 @@ export class MassivefcPage implements OnInit {
       .getArticles()
       .toPromise()
       .then((res) => {
-        console.log(res["results"]);
-
         this.articles = res["results"];
         this.homesrvc._articles = this.articles;
         this.isLoading = false;
       });
 
     // fetch videos
-    // this.homesrvc.getVideos().toPromise().then(res => {
-    //   this.vide
-    // })
+    this.homesrvc
+      .getVideos()
+      .toPromise()
+      .then((res) => {
+        this.videos = res["results"];
+        console.log(this.videos);
+      });
   }
 
   openModal(fixture: Article) {

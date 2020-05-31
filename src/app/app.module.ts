@@ -9,9 +9,10 @@ import { StatusBar } from "@ionic-native/status-bar/ngx";
 import { AppComponent } from "./app.component";
 import { AppRoutingModule } from "./app-routing.module";
 import { HttpClientModule } from "@angular/common/http";
+import { ThumbNailReaperPipe } from './pipes/thumb-nail-reaper.pipe';
 
 @NgModule({
-  declarations: [AppComponent],
+  declarations: [AppComponent, ThumbNailReaperPipe],
   entryComponents: [],
   imports: [
     BrowserModule,

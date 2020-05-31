@@ -8,10 +8,15 @@ import { MassivefcPageRoutingModule } from "./massivefc-routing.module";
 
 import { MassivefcPage } from "./massivefc.page";
 import { FixtureResultModalComponent } from "./fixture-result-modal/fixture-result-modal.component";
+import { ThumbNailReaperPipe } from "src/app/pipes/thumb-nail-reaper.pipe";
 
 @NgModule({
   imports: [CommonModule, FormsModule, IonicModule, MassivefcPageRoutingModule],
-  declarations: [MassivefcPage, FixtureResultModalComponent],
+  declarations: [
+    MassivefcPage,
+    FixtureResultModalComponent,
+    ThumbNailReaperPipe,
+  ],
   entryComponents: [FixtureResultModalComponent],
 })
 export class MassivefcPageModule {}

@@ -81,7 +81,7 @@
       <!-- end row fixture -->
     </ion-list>
 
-    <!-- start latest videos -->
+    <!-- ========================start latest videos ===================================-->
 
     <ion-list>
       <ion-list-header>
@@ -90,7 +90,7 @@
       <ion-grid>
         <ion-row>
           <ion-col *ngFor="let video of videos" size="6">
-            <ion-img [src]="video?.imageUrl"></ion-img>
+            <ion-img [src]="video?.thumbnail |thumbNailReaper "></ion-img>
             <ion-item lines="none">
               <ion-label>
                 <p>{{video.title}}</p>

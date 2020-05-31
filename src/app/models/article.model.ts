@@ -7,6 +7,16 @@ export interface Article {
   excerpt?: string;
 }
 
+export interface Video {
+  _id: string;
+  club: string;
+  title: string;
+  duration: string;
+  url: string;
+  thumbnail: string;
+  scrappedDate: Date;
+}
+
 export interface Fixture {
   id: string;
   date: string;
