@@ -51,24 +51,24 @@
     </ion-row>
   </ion-list>
 
-  <ion-list>
-    <ion-list-header>
-      <ion-label> <h2>Latest Videos</h2></ion-label>
-    </ion-list-header>
-    <ion-grid>
-      <ion-row>
-        <ion-col *ngFor="let article of articles " size="6">
-          <video #player playsinline preload="auto">
-            <source [src]="video.url" type="video/mp4" />
-          </video>
-          <ion-label class="ion-text-wrap">
-            <p>{{video.title}}</p>
-          </ion-label>
-          <ion-item lines="none"> </ion-item>
-        </ion-col>
-      </ion-row>
-    </ion-grid>
-  </ion-list>
+  <ion-grid>
+    <ion-virtual-scroll [items]="items" approxItemHeight="320px">
+      <ion-item
+        size="6"
+        *virtualItem="let item"
+        [routerLink]="['/','home','tabs','news','news-detail',item._id]"
+      >
+        <ion-thumbnail slot="start">
+          <ion-img [src]="item.imageUrl" [alt]="item.title"></ion-img>
+        </ion-thumbnail>
+        <ion-label class="ion-text-wrap">
+          <h4>{{ item.title }}</h4>
+
+          <p>{{ item.scrappedDate |date:"short" }}</p>
+        </ion-label>
+      </ion-item>
+    </ion-virtual-scroll>
+  </ion-grid>
   <!-- end latest videos -->
 
   <ion-grid *ngIf="isLoading" margin-vertical="50%">

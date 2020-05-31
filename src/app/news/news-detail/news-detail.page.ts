@@ -27,6 +27,7 @@ export class NewsDetailPage implements OnInit {
       }
       // get article
       this.article = this.homeSrvc.getArticle(paraMap.get("id"));
+      console.log("--------", this.article);
     });
   }
 }
