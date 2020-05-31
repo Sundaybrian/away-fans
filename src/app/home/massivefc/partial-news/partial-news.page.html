@@ -32,7 +32,7 @@
         Related Articles
       </ion-list-header>
       <ion-item
-        *ngFor="let item of articles.slice(1)"
+        *ngFor="let item of relatedArticles"
         detail
         [routerLink]="['/','home','tabs','massivefc','partial-news',item._id]"
       >
@@ -40,8 +40,7 @@
           <ion-img [src]="item?.imageUrl"></ion-img>
         </ion-thumbnail>
         <ion-label>
-          <h2>{{ item.title}}</h2>
-          <p>{{ item.subtitle}}</p>
+          <h4>{{ item.title}}</h4>
         </ion-label>
       </ion-item>
     </ion-list>
