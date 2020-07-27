@@ -48,8 +48,6 @@ export class AuthService {
     return this.afAuth.auth
       .signInWithEmailAndPassword(email, password)
       .then((data) => {
-        console.log(data, "________________________=======");
-
         this._currentUser = data.user;
         this._userId = data.user.uid;
 
@@ -60,12 +58,7 @@ export class AuthService {
       })
       .then((_token) => {
         this.token = _token;
-        // navigate user to home page
-        this.router.navigate(["/home/tabs/massivefc"]);
-      })
-      .catch((error) => {
-        // show errors
-        this.showAlert("Error", error.message);
+        this._isAuthenticated = true;
       });
   }
 

@@ -28,7 +28,6 @@ export class AuthPage implements OnInit {
   }
 
   onSubmit(f: NgForm) {
-    console.log(f);
     if (!f.valid) {
       return;
     }
@@ -39,8 +38,9 @@ export class AuthPage implements OnInit {
     if (this.isLogin) {
       // TODO:run login func
       // TODO:redict to profile for more data collection
+      this.login(email, password);
     } else {
-      //run signup func
+      // run signup func
       this.authenticate(email, password);
     }
   }
@@ -58,6 +58,28 @@ export class AuthPage implements OnInit {
         this.authSrvc.register(email, password).then((data) => {
           this.router.navigate(["/home/tabs/massivefc"]);
           loadingEl.dismiss();
+          this.isLoading = false;
+        });
+      })
+      .catch((error) => {
+        this.showAlert("Error", error.message);
+      });
+  }
+
+  login(email, password) {
+    this.isLoading = true;
+    this.loadingCtrl
+      .create({
+        keyboardClose: true,
+        message: "Authenticating...Please wait",
+      })
+      .then((loadingEl) => {
+        loadingEl.present();
+
+        this.authSrvc.login(email, password).then(() => {
+          this.router.navigate(["/home/tabs/massivefc"]);
+          loadingEl.dismiss();
+          this.isLoading = false;
         });
       })
       .catch((error) => {
