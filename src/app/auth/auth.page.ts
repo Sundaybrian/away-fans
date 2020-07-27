@@ -1,6 +1,6 @@
 import { Component, OnInit } from "@angular/core";
 import { AuthService } from "../services/auth.service";
-import { LoadingController } from "@ionic/angular";
+import { LoadingController, AlertController } from "@ionic/angular";
 import { Router } from "@angular/router";
 import { NgForm } from "@angular/forms";
 import { format } from "url";
@@ -16,31 +16,11 @@ export class AuthPage implements OnInit {
   constructor(
     private authSrvc: AuthService,
     private loadingCtrl: LoadingController,
-    private router: Router
+    private router: Router,
+    public alert: AlertController
   ) {}
 
   ngOnInit() {}
-
-  onLogin(email, password) {
-    this.authSrvc.login(email, password).then((result) => {
-      console.log(result);
-    });
-    // mimicing full screen loading controller
-    // this.loadingCtrl
-    //   .create({
-    //     keyboardClose: true,
-    //     spinner: "crescent",
-    //     message: "Authenticating...please wait",
-    //   })
-    //   .then((loadingEL) => {
-    //     loadingEL.present();
-    //     setTimeout(() => {
-    //       this.isLoading = false;
-    //       loadingEL.dismiss();
-    //       this.router.navigateByUrl("/home/tabs/massivefc");
-    //     }, 1500);
-    //   });
-  }
 
   onSwitchAuthMode() {
     // switching bwtn login and signup
@@ -61,9 +41,37 @@ export class AuthPage implements OnInit {
       // TODO:redict to profile for more data collection
     } else {
       //run signup func
-      this.authSrvc.register(email, password).then((result) => {
-        console.log(result);
-      });
+      this.authenticate(email, password);
     }
+  }
+
+  authenticate(email, password) {
+    this.isLoading = true;
+    this.loadingCtrl
+      .create({
+        keyboardClose: true,
+        message: "Creating Account...please wait",
+      })
+      .then((loadingEl) => {
+        loadingEl.present();
+
+        this.authSrvc.register(email, password).then((data) => {
+          this.router.navigate(["/home/tabs/massivefc"]);
+          loadingEl.dismiss();
+        });
+      })
+      .catch((error) => {
+        this.showAlert("Error", error.message);
+      });
+  }
+
+  async showAlert(header: string, message: string) {
+    const alert = await this.alert.create({
+      header,
+      message,
+      buttons: ["ok"],
+    });
+
+    await alert.present();
   }
 }

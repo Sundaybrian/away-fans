@@ -45,16 +45,8 @@ export class AuthService {
   login(email, password) {
     // method to login a user
 
-    return this.loadingctrl
-      .create({
-        message: "Authenticating...",
-        spinner: "bubbles",
-      })
-      .then((loadingEl) => {
-        loadingEl.present();
-
-        return this.afAuth.auth.signInWithEmailAndPassword(email, password);
-      })
+    return this.afAuth.auth
+      .signInWithEmailAndPassword(email, password)
       .then((data) => {
         console.log(data, "________________________=======");
 
@@ -68,7 +60,6 @@ export class AuthService {
       })
       .then((_token) => {
         this.token = _token;
-        this.loadingctrl.dismiss();
         // navigate user to home page
         this.router.navigate(["/home/tabs/massivefc"]);
       })
@@ -81,16 +72,8 @@ export class AuthService {
   register(email, password) {
     // to register a user
     const userCollections = this.afs.collection("users");
-    return this.loadingctrl
-      .create({
-        message: "Creating User...",
-        spinner: "bubbles",
-      })
-      .then((loadingEl) => {
-        loadingEl.present();
-
-        return this.afAuth.auth.createUserWithEmailAndPassword(email, password);
-      })
+    return this.afAuth.auth
+      .createUserWithEmailAndPassword(email, password)
       .then((data) => {
         this._userId = data.user.uid;
         this._currentUser = data.user;
@@ -99,21 +82,13 @@ export class AuthService {
       })
       .then((_token) => {
         this.token = _token;
+        this._isAuthenticated = true;
         const userData = {
           email,
           userId: this.userId,
         };
 
         return userCollections.add(userData);
-      })
-      .then(() => {
-        this.loadingctrl.dismiss();
-        this.showAlert("Success", "Welcome to away fans");
-        this.router.navigate(["/home/tabs/massivefc"]);
-      })
-      .catch((error) => {
-        console.error(error);
-        this.showAlert("Error", error.message);
       });
   }
 
