@@ -31,4 +31,5 @@ npm-debug.log*
 /www
 
 
-src/app/environments
+src/environments
+environments*
