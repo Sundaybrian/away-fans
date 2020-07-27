@@ -1,5 +1,5 @@
 {
-  "appId": "io.massive-dynamics.away-fans",
+  "appId": "io.softgap.awayfans",
   "appName": "away-fans",
   "bundledWebRuntime": false,
   "npmClient": "npm",
