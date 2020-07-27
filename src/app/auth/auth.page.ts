@@ -12,7 +12,7 @@ import { format } from "url";
 })
 export class AuthPage implements OnInit {
   isLoading = false;
-  isLogin = true;
+  isLogin = false;
   constructor(
     private authSrvc: AuthService,
     private loadingCtrl: LoadingController,
@@ -21,24 +21,25 @@ export class AuthPage implements OnInit {
 
   ngOnInit() {}
 
-  onLogin() {
-    this.isLoading = true;
-    this.authSrvc.login();
+  onLogin(email, password) {
+    this.authSrvc.login(email, password).then((result) => {
+      console.log(result);
+    });
     // mimicing full screen loading controller
-    this.loadingCtrl
-      .create({
-        keyboardClose: true,
-        spinner: "crescent",
-        message: "Authenticating...please wait",
-      })
-      .then((loadingEL) => {
-        loadingEL.present();
-        setTimeout(() => {
-          this.isLoading = false;
-          loadingEL.dismiss();
-          this.router.navigateByUrl("/home/tabs/massivefc");
-        }, 1500);
-      });
+    // this.loadingCtrl
+    //   .create({
+    //     keyboardClose: true,
+    //     spinner: "crescent",
+    //     message: "Authenticating...please wait",
+    //   })
+    //   .then((loadingEL) => {
+    //     loadingEL.present();
+    //     setTimeout(() => {
+    //       this.isLoading = false;
+    //       loadingEL.dismiss();
+    //       this.router.navigateByUrl("/home/tabs/massivefc");
+    //     }, 1500);
+    //   });
   }
 
   onSwitchAuthMode() {
@@ -60,6 +61,9 @@ export class AuthPage implements OnInit {
       // TODO:redict to profile for more data collection
     } else {
       //run signup func
+      this.authSrvc.register(email, password).then((result) => {
+        console.log(result);
+      });
     }
   }
 }

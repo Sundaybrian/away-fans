@@ -8,8 +8,8 @@ import { StatusBar } from "@ionic-native/status-bar/ngx";
 import { FCM } from "@ionic-native/fcm/ngx";
 
 import { AngularFireModule } from "@angular/fire";
-import { AngularFirestore } from "@angular/fire/firestore";
 import { AngularFireAuthModule } from "@angular/fire/auth";
+import { AngularFirestoreModule } from "@angular/fire/firestore";
 import { environment } from "src/environments/environment";
 
 import { AppComponent } from "./app.component";
@@ -25,8 +25,8 @@ import { HttpClientModule } from "@angular/common/http";
     IonicModule.forRoot(),
     AppRoutingModule,
     AngularFireModule.initializeApp(environment.firebase),
+    AngularFirestoreModule,
     AngularFireAuthModule,
-    AngularFirestore,
   ],
   providers: [
     StatusBar,

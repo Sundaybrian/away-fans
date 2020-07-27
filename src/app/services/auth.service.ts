@@ -14,9 +14,10 @@ import { AngularFirestore } from "@angular/fire/firestore";
   providedIn: "root",
 })
 export class AuthService {
+  _isAuthenticated = false;
   private _currentUser;
-  private _userId = "abc";
-  private token = "";
+  private _userId;
+  token;
 
   constructor(
     public afAuth: AngularFireAuth,
@@ -33,6 +34,10 @@ export class AuthService {
     return this._currentUser;
   }
 
+  getAuthenticatedUser() {
+    return this._isAuthenticated;
+  }
+
   get userId() {
     return this._userId;
   }
@@ -40,7 +45,7 @@ export class AuthService {
   login(email, password) {
     // method to login a user
 
-    this.loadingctrl
+    return this.loadingctrl
       .create({
         message: "Authenticating...",
         spinner: "bubbles",
@@ -51,7 +56,9 @@ export class AuthService {
         return this.afAuth.auth.signInWithEmailAndPassword(email, password);
       })
       .then((data) => {
-        this._currentUser = data;
+        console.log(data, "________________________=======");
+
+        this._currentUser = data.user;
         this._userId = data.user.uid;
 
         // setup notifications
@@ -71,35 +78,50 @@ export class AuthService {
       });
   }
 
-  async register(email, password) {
+  register(email, password) {
     // to register a user
-    try {
-      const res = await this.afAuth.auth.createUserWithEmailAndPassword(
-        email,
-        password
-      );
+    const userCollections = this.afs.collection("users");
+    return this.loadingctrl
+      .create({
+        message: "Creating User...",
+        spinner: "bubbles",
+      })
+      .then((loadingEl) => {
+        loadingEl.present();
 
-      const userCollections = this.afs.collection("users");
+        return this.afAuth.auth.createUserWithEmailAndPassword(email, password);
+      })
+      .then((data) => {
+        this._userId = data.user.uid;
+        this._currentUser = data.user;
 
-      const userData = {
-        email,
-        userId: this.afAuth.auth.currentUser.uid,
-      };
+        return data.user.getIdToken();
+      })
+      .then((_token) => {
+        this.token = _token;
+        const userData = {
+          email,
+          userId: this.userId,
+        };
 
-      userCollections.add(userData);
-
-      this.showAlert("Success", "Welcome to away fans");
-      this.router.navigate(["/home/tabs/massivefc"]);
-    } catch (error) {
-      console.dir(error);
-      this.showAlert("Error", error.message);
-    }
+        return userCollections.add(userData);
+      })
+      .then(() => {
+        this.loadingctrl.dismiss();
+        this.showAlert("Success", "Welcome to away fans");
+        this.router.navigate(["/home/tabs/massivefc"]);
+      })
+      .catch((error) => {
+        console.error(error);
+        this.showAlert("Error", error.message);
+      });
   }
 
   onLogout() {
     // logout user
+    this._currentUser = this._userId = this.token = "";
     this.afAuth.auth.signOut();
-    this.router.navigate(["/login"]);
+    this.router.navigate(["/auth"]);
   }
 
   initializeApp() {
