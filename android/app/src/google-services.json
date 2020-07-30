@@ -1,0 +1,40 @@
+{
+  "project_info": {
+    "project_number": "654263767848",
+    "firebase_url": "https://fir-weblearn-b660f.firebaseio.com",
+    "project_id": "fir-weblearn-b660f",
+    "storage_bucket": "fir-weblearn-b660f.appspot.com"
+  },
+  "client": [
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:654263767848:android:038b306614bc3c4710b61d",
+        "android_client_info": {
+          "package_name": "io.softgap.awayfans"
+        }
+      },
+      "oauth_client": [
+        {
+          "client_id": "654263767848-gh3etf3cdesesnbr0ts95icsgf4mofuh.apps.googleusercontent.com",
+          "client_type": 3
+        }
+      ],
+      "api_key": [
+        {
+          "current_key": "AIzaSyCq3i-fXVms3aIwuWOifU9fanvgUw_02Zs"
+        }
+      ],
+      "services": {
+        "appinvite_service": {
+          "other_platform_oauth_client": [
+            {
+              "client_id": "654263767848-gh3etf3cdesesnbr0ts95icsgf4mofuh.apps.googleusercontent.com",
+              "client_type": 3
+            }
+          ]
+        }
+      }
+    }
+  ],
+  "configuration_version": "1"
+}

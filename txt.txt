@@ -1,0 +1,10 @@
+npm install cordova-plugin-fcm-with-dependecy-updated
+npm install @ionic-native/fcm
+
+
+
+npm install cordova-plugin-firebasex --FIREBASE_ANALYTICS_COLLECTION_ENABLED=false --FIREBASE_PERFORMANCE_COLLECTION_ENABLED=false --FIREBASE_CRASHLYTICS_COLLECTION_ENABLED=false
+
+npm install @ionic-native/firebase-x
+
+ionic cap sync

@@ -55,13 +55,14 @@ export class AuthPage implements OnInit {
       .then((loadingEl) => {
         loadingEl.present();
 
-        this.authSrvc.register(email, password).then((data) => {
+        return this.authSrvc.register(email, password).then((data) => {
           this.router.navigate(["/home/tabs/massivefc"]);
           loadingEl.dismiss();
           this.isLoading = false;
         });
       })
       .catch((error) => {
+        this.loadingCtrl.dismiss();
         this.showAlert("Error", error.message);
       });
   }
@@ -76,13 +77,14 @@ export class AuthPage implements OnInit {
       .then((loadingEl) => {
         loadingEl.present();
 
-        this.authSrvc.login(email, password).then(() => {
+        return this.authSrvc.login(email, password).then(() => {
           this.router.navigate(["/home/tabs/massivefc"]);
           loadingEl.dismiss();
           this.isLoading = false;
         });
       })
       .catch((error) => {
+        this.loadingCtrl.dismiss();
         this.showAlert("Error", error.message);
       });
   }

@@ -26,6 +26,7 @@ export default [
       "https://www.dreamteamfc.com/c/wp-content/uploads/sites/4/2019/10/salahaa.jpg?strip=all&w=750&quality=100",
     user: "abc",
   },
+  // test tickets
   {
     id: "4",
     title: "chelsea qualify for europe",
@@ -33,6 +34,33 @@ export default [
     subtitle: "sorry arsenal",
     imageUrl:
       "https://img.bleacherreport.net/img/images/photos/003/856/436/hi-res-52ce61a0c2b9498cd597123e64774b13_crop_north.jpg?h=533&w=800&q=70&crop_x=center&crop_y=top",
-    user: "abc",
+    user: null,
+  },
+  {
+    id: "5",
+    title: "chelsea qualify for europe",
+    competition: "champions league",
+    subtitle: "sorry arsenal",
+    imageUrl:
+      "https://img.bleacherreport.net/img/images/photos/003/856/436/hi-res-52ce61a0c2b9498cd597123e64774b13_crop_north.jpg?h=533&w=800&q=70&crop_x=center&crop_y=top",
+    user: null,
+  },
+  {
+    id: "6",
+    title: "chelsea qualify for europe",
+    competition: "champions league",
+    subtitle: "sorry arsenal",
+    imageUrl:
+      "https://img.bleacherreport.net/img/images/photos/003/856/436/hi-res-52ce61a0c2b9498cd597123e64774b13_crop_north.jpg?h=533&w=800&q=70&crop_x=center&crop_y=top",
+    user: null,
+  },
+  {
+    id: "7",
+    title: "chelsea qualify for europe",
+    competition: "champions league",
+    subtitle: "sorry arsenal",
+    imageUrl:
+      "https://img.bleacherreport.net/img/images/photos/003/856/436/hi-res-52ce61a0c2b9498cd597123e64774b13_crop_north.jpg?h=533&w=800&q=70&crop_x=center&crop_y=top",
+    user: null,
   },
 ];

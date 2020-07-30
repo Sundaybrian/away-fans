@@ -1,4 +1,4 @@
-package io.ionic.starter;
+package io.softgap.awayfans;
 
 import android.os.Bundle;
 

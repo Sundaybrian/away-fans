@@ -31,6 +31,23 @@ const routes: Routes = [
         (m) => m.MembershipPageModule
       ),
   },
+  {
+    path: "my-tickets",
+    loadChildren: () =>
+      import("../my-tickets/my-tickets.module").then(
+        (m) => m.MyTicketsPageModule
+      ),
+  },
+  {
+    path: "shop",
+    loadChildren: () =>
+      import("../shop/shop.module").then((m) => m.ShopPageModule),
+  },
+  {
+    path: "travel",
+    loadChildren: () =>
+      import("../travel/travel.module").then((m) => m.TravelPageModule),
+  },
 ];
 
 @NgModule({

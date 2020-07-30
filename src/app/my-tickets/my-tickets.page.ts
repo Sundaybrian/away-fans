@@ -13,6 +13,8 @@ import { AuthService } from "../services/auth.service";
 export class MyTicketsPage implements OnInit {
   tickets: Ticket[] = [];
   relevantTickets: Ticket[] = [];
+  isMine: boolean = true;
+  isBookable: boolean = false;
 
   constructor(
     private tcktSrvc: TicketService,
@@ -21,16 +23,25 @@ export class MyTicketsPage implements OnInit {
   ) {}
 
   ngOnInit() {
-    this.tickets = this.relevantTickets = this.tcktSrvc.tickets;
+    this.relevantTickets = this.tcktSrvc.tickets;
+    this.tickets = this.relevantTickets.filter((ticket) => {
+      return ticket.user == this.authService.userId;
+    });
   }
 
   onSegmentChange(event: CustomEvent<SegmentChangeEventDetail>) {
     if (event.detail.value == "mine") {
-      this.tickets = this.relevantTickets;
+      this.tickets = this.relevantTickets.filter((ticket) => {
+        return ticket.user == this.authService.userId;
+      });
+      this.isMine = true;
+      this.isBookable = false;
     } else {
-      this.tickets = this.relevantTickets.filter(
-        (ticket) => ticket.user != this.authService.userId
-      );
+      this.tickets = this.relevantTickets.filter((ticket) => {
+        return ticket.user != this.authService.userId;
+      });
+      this.isMine = false;
+      this.isBookable = true;
     }
   }
 

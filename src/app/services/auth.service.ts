@@ -1,7 +1,7 @@
 import { Injectable } from "@angular/core";
 import { AngularFireAuth } from "@angular/fire/auth";
 import { Router } from "@angular/router";
-import { FcmService } from "./fcm.service";
+// import { FcmService } from "./fcm.service";
 import {
   AlertController,
   Platform,
@@ -14,15 +14,15 @@ import { AngularFirestore } from "@angular/fire/firestore";
   providedIn: "root",
 })
 export class AuthService {
-  _isAuthenticated = false;
+  _isAuthenticated = true;
   private _currentUser;
-  private _userId;
+  private _userId = "abc";
   token;
 
   constructor(
     public afAuth: AngularFireAuth,
     public router: Router,
-    public fcm: FcmService,
+    // public fcm: FcmService,
     public alert: AlertController,
     private platform: Platform,
     public loadingctrl: LoadingController,
@@ -52,7 +52,7 @@ export class AuthService {
         this._userId = data.user.uid;
 
         // setup notifications
-        this.initializeApp();
+        // this.initializeApp();
 
         return data.user.getIdToken();
       })
@@ -97,21 +97,21 @@ export class AuthService {
       // this.statusBar.styleDefault();
       // this.splashScreen.hide();
       // check networl state
-      this.notificationsSetup();
+      // this.notificationsSetup();
     });
   }
 
   // notifications setup
-  private notificationsSetup() {
-    this.fcm.getToken();
-    this.fcm.onNotifications().subscribe((msg) => {
-      if (msg.wasTapped) {
-        this.presentToast(msg.wasTapped);
-      } else {
-        this.presentToast(msg.body);
-      }
-    });
-  }
+  // private notificationsSetup() {
+  //   this.fcm.getToken();
+  //   this.fcm.onNotifications().subscribe((msg) => {
+  //     if (msg.wasTapped) {
+  //       this.presentToast(msg.wasTapped);
+  //     } else {
+  //       this.presentToast(msg.body);
+  //     }
+  //   });
+  // }
 
   async showAlert(header: string, message: string) {
     const alert = await this.alert.create({
