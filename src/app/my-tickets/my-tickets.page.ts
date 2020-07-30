@@ -118,6 +118,8 @@ export class MyTicketsPage implements OnInit {
               //   });
 
               console.log("doooone");
+            } else {
+              loadingEl.dismiss();
             }
           });
       });
