@@ -29,7 +29,6 @@ export class TicketBookingModalComponent implements OnInit {
           // lastName: this.form.value["last"],
           ticket: this.ticket,
           tickets: +this.form.value["tickets"],
-          user: "abc",
           // from: new Date(this.form.value["from"]),
           // to: new Date(this.form.value["to"]),
         },

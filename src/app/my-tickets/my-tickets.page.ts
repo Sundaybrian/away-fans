@@ -102,20 +102,15 @@ export class MyTicketsPage implements OnInit {
             loadingEl.present();
 
             if (resultData.role == "confirm") {
-              // this.bookingSrvc
-              //   .addBooking(
-              //     this.vehicle.id,
-              //     this.vehicle.title,
-              //     this.vehicle.imageUrl,
-              //     resultData.data.firstName,
-              //     resultData.data.lastName,
-              //     resultData.data.capacity,
-              //     resultData.data.from,
-              //     resultData.data.to
-              //   )
-              //   .subscribe(() => {
-              //     loadingEl.dismiss();
-              //   });
+              this.tcktSrvc
+                .addBooking(
+                  this.authService.userId,
+                  resultData.data.ticket,
+                  resultData.data.tickets
+                )
+                .subscribe(() => {
+                  loadingEl.dismiss();
+                });
 
               console.log("doooone");
             } else {
