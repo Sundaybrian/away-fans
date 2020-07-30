@@ -124,7 +124,7 @@ export class AuthService {
   }
 
   // adding a toast
-  private async presentToast(message) {
+  async presentToast(message) {
     const toast = await this.toastcontroller.create({
       message,
       duration: 3000,

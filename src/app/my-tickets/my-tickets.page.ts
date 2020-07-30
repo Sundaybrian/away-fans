@@ -19,8 +19,8 @@ import { TicketBookingModalComponent } from "./ticket-booking-modal/ticket-booki
 export class MyTicketsPage implements OnInit {
   tickets: Ticket[] = [];
   relevantTickets: Ticket[] = [];
-  isMine: boolean = true;
-  isBookable: boolean = false;
+  isMine = true;
+  isBookable = false;
 
   constructor(
     private tcktSrvc: TicketService,
@@ -85,7 +85,7 @@ export class MyTicketsPage implements OnInit {
       .create({
         component: TicketBookingModalComponent,
         componentProps: {
-          ticket: ticket,
+          ticket,
         },
       })
       .then((modalEL) => {
@@ -102,14 +102,19 @@ export class MyTicketsPage implements OnInit {
             loadingEl.present();
 
             if (resultData.role == "confirm") {
+              console.log(resultData.data);
+
               this.tcktSrvc
                 .addBooking(
                   this.authService.userId,
-                  resultData.data.ticket,
-                  resultData.data.tickets
+                  resultData.data.bookingData.ticket,
+                  resultData.data.bookingData.tickets
                 )
                 .subscribe(() => {
                   loadingEl.dismiss();
+                  this.authService.presentToast(
+                    `successfully purchased ${resultData.data.bookingData.tickets} tickets for ${resultData.data.bookingData.ticket.title} `
+                  );
                 });
 
               console.log("doooone");
