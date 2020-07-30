@@ -21,7 +21,7 @@ export default [
     id: "3",
     title: "liverpool vs kariobangi sharks",
     competition: "premier league",
-    subtitle: "sorry arsenal could have played until sunrise",
+    subtitle: "sat 7th May 2019 -1700 Emirates Stadium",
     imageUrl:
       "https://www.dreamteamfc.com/c/wp-content/uploads/sites/4/2019/10/salahaa.jpg?strip=all&w=750&quality=100",
     user: "abc",
@@ -29,38 +29,37 @@ export default [
   // test tickets
   {
     id: "4",
-    title: "chelsea qualify for europe",
+    title: "chelsea vs Bayern",
     competition: "champions league",
-    subtitle: "sorry arsenal",
+    subtitle: "sat 7th May 2019 -1700 Alianz Arena",
     imageUrl:
-      "https://img.bleacherreport.net/img/images/photos/003/856/436/hi-res-52ce61a0c2b9498cd597123e64774b13_crop_north.jpg?h=533&w=800&q=70&crop_x=center&crop_y=top",
+      "https://media.squawka.com/images/en/2020/02/24103313/chelsea-bayern-munich-preview.png",
     user: null,
   },
   {
     id: "5",
-    title: "chelsea qualify for europe",
+    title: "Gor vs Anzi",
     competition: "champions league",
-    subtitle: "sorry arsenal",
+    subtitle: "sat Aug 30 2019 -1800 Nyayo Stadium",
     imageUrl:
-      "https://img.bleacherreport.net/img/images/photos/003/856/436/hi-res-52ce61a0c2b9498cd597123e64774b13_crop_north.jpg?h=533&w=800&q=70&crop_x=center&crop_y=top",
+      "https://www.sportpesanews.com/images/large/jacques_tuyisenge_of_kenya_s_gor_mahia__c__below__celebrates_with_batambuze_shafik__c__above__after_scoring_his_second_goal_during_their_caf_confereration_cup_football_match_against_egypt_s_zamalek_at_the_kasarani_stadium_in_nairobi_on_9af237ebc1.jpg",
     user: null,
   },
   {
     id: "6",
-    title: "chelsea qualify for europe",
-    competition: "champions league",
-    subtitle: "sorry arsenal",
+    title: "City Stars vs Ulinzi",
+    competition: "kenya premier league",
+    subtitle: "sun Sep 30 2019 -1800 Machakos Stadium",
     imageUrl:
-      "https://img.bleacherreport.net/img/images/photos/003/856/436/hi-res-52ce61a0c2b9498cd597123e64774b13_crop_north.jpg?h=533&w=800&q=70&crop_x=center&crop_y=top",
+      "https://www.sofascore.com/images/share/16x9/ulinzi-stars-nairobi-city-stars-fc-7116333.png",
     user: null,
   },
   {
     id: "7",
-    title: "chelsea qualify for europe",
-    competition: "champions league",
-    subtitle: "sorry arsenal",
-    imageUrl:
-      "https://img.bleacherreport.net/img/images/photos/003/856/436/hi-res-52ce61a0c2b9498cd597123e64774b13_crop_north.jpg?h=533&w=800&q=70&crop_x=center&crop_y=top",
+    title: "Sofaka Vs Tusker",
+    competition: "kenya premier league",
+    subtitle: "mon Nov 2 2019 -1400 Machakos Stadium",
+    imageUrl: "https://www.michezoafrika.com/newsimages/Tusker-Sofa-2013.JPG",
     user: null,
   },
 ];

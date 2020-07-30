@@ -1,6 +1,6 @@
-import { Component, OnInit } from "@angular/core";
+import { Component, OnInit, OnDestroy } from "@angular/core";
 import { Ticket } from "../models/article.model";
-import { TicketService } from "../services/ticket.service";
+import { TicketService, BookingTicket } from "../services/ticket.service";
 import {
   IonItemSliding,
   ActionSheetController,
@@ -10,15 +10,17 @@ import {
 import { SegmentChangeEventDetail } from "@ionic/core";
 import { AuthService } from "../services/auth.service";
 import { TicketBookingModalComponent } from "./ticket-booking-modal/ticket-booking-modal.component";
+import { Subscription } from "rxjs";
 
 @Component({
   selector: "app-my-tickets",
   templateUrl: "./my-tickets.page.html",
   styleUrls: ["./my-tickets.page.scss"],
 })
-export class MyTicketsPage implements OnInit {
-  tickets: Ticket[] = [];
+export class MyTicketsPage implements OnInit, OnDestroy {
+  tickets: BookingTicket[] = [];
   relevantTickets: Ticket[] = [];
+  bookingsSub: Subscription;
   isMine = true;
   isBookable = false;
 
@@ -27,27 +29,28 @@ export class MyTicketsPage implements OnInit {
     private actionSheet: ActionSheetController,
     private authService: AuthService,
     private modalCtrl: ModalController,
-    private loadingCtrl: LoadingController
+    private loadingCtrl: LoadingController,
+    private ticketService: TicketService
   ) {}
 
   ngOnInit() {
     this.relevantTickets = this.tcktSrvc.tickets;
-    this.tickets = this.relevantTickets.filter((ticket) => {
-      return ticket.user == this.authService.userId;
+    this.bookingsSub = this.ticketService.bookings.subscribe((data) => {
+      this.tickets = data;
     });
   }
 
   onSegmentChange(event: CustomEvent<SegmentChangeEventDetail>) {
     if (event.detail.value == "mine") {
-      this.tickets = this.relevantTickets.filter((ticket) => {
-        return ticket.user == this.authService.userId;
-      });
+      // this.tickets = this.relevantTickets.filter((ticket) => {
+      //   return ticket.user == this.authService.userId;
+      // });
       this.isMine = true;
       this.isBookable = false;
     } else {
-      this.tickets = this.relevantTickets.filter((ticket) => {
-        return ticket.user != this.authService.userId;
-      });
+      // this.tickets = this.relevantTickets.filter((ticket) => {
+      //   return ticket.user != this.authService.userId;
+      // });
       this.isMine = false;
       this.isBookable = true;
     }
@@ -123,5 +126,9 @@ export class MyTicketsPage implements OnInit {
             }
           });
       });
+  }
+
+  ngOnDestroy() {
+    this.bookingsSub.unsubscribe();
   }
 }
