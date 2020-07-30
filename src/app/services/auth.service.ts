@@ -14,9 +14,9 @@ import { AngularFirestore } from "@angular/fire/firestore";
   providedIn: "root",
 })
 export class AuthService {
-  _isAuthenticated = true;
+  _isAuthenticated = false;
   private _currentUser;
-  private _userId = "abc";
+  private _userId;
   token;
 
   constructor(
@@ -48,6 +48,7 @@ export class AuthService {
     return this.afAuth.auth
       .signInWithEmailAndPassword(email, password)
       .then((data) => {
+        // TODO use actual firebase user
         this._currentUser = data.user;
         this._userId = data.user.uid;
 

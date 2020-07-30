@@ -1,6 +1,7 @@
 import { Component, OnInit } from "@angular/core";
 import { ModalController } from "@ionic/angular";
 import { GeneralDetailsModalPage } from "./general-details-modal/general-details-modal.page";
+import { AuthService } from "src/app/services/auth.service";
 
 @Component({
   selector: "app-account",
@@ -8,7 +9,10 @@ import { GeneralDetailsModalPage } from "./general-details-modal/general-details
   styleUrls: ["./account.page.scss"],
 })
 export class AccountPage implements OnInit {
-  constructor(private modalCtrl: ModalController) {}
+  constructor(
+    private modalCtrl: ModalController,
+    private authService: AuthService
+  ) {}
 
   ngOnInit() {}
 
@@ -19,8 +23,8 @@ export class AccountPage implements OnInit {
         component: GeneralDetailsModalPage,
         componentProps: {
           user: {
-            id: 1,
-            name: "Amos Okumu",
+            id: this.authService.userId,
+            name: this.authService.currentUser.email,
           },
         },
       })
