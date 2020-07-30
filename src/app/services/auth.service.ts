@@ -89,6 +89,7 @@ export class AuthService {
   onLogout() {
     // logout user
     this._currentUser = this._userId = this.token = "";
+    this._isAuthenticated = false;
     this.afAuth.auth.signOut();
     this.router.navigate(["/auth"]);
   }

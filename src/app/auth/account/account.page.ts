@@ -9,12 +9,15 @@ import { AuthService } from "src/app/services/auth.service";
   styleUrls: ["./account.page.scss"],
 })
 export class AccountPage implements OnInit {
+  username: string = "";
   constructor(
     private modalCtrl: ModalController,
     private authService: AuthService
   ) {}
 
-  ngOnInit() {}
+  ngOnInit() {
+    this.username = this.authService.currentUser.email;
+  }
 
   openModal() {
     // open general details modal
