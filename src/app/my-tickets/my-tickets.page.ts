@@ -1,9 +1,15 @@
 import { Component, OnInit } from "@angular/core";
 import { Ticket } from "../models/article.model";
 import { TicketService } from "../services/ticket.service";
-import { IonItemSliding, ActionSheetController } from "@ionic/angular";
+import {
+  IonItemSliding,
+  ActionSheetController,
+  ModalController,
+  LoadingController,
+} from "@ionic/angular";
 import { SegmentChangeEventDetail } from "@ionic/core";
 import { AuthService } from "../services/auth.service";
+import { TicketBookingModalComponent } from "./ticket-booking-modal/ticket-booking-modal.component";
 
 @Component({
   selector: "app-my-tickets",
@@ -19,7 +25,9 @@ export class MyTicketsPage implements OnInit {
   constructor(
     private tcktSrvc: TicketService,
     private actionSheet: ActionSheetController,
-    private authService: AuthService
+    private authService: AuthService,
+    private modalCtrl: ModalController,
+    private loadingCtrl: LoadingController
   ) {}
 
   ngOnInit() {
@@ -69,6 +77,49 @@ export class MyTicketsPage implements OnInit {
       })
       .then((actionSheetEL) => {
         actionSheetEL.present();
+      });
+  }
+
+  onTicketBooking(ticket) {
+    this.modalCtrl
+      .create({
+        component: TicketBookingModalComponent,
+        componentProps: {
+          ticket: ticket,
+        },
+      })
+      .then((modalEL) => {
+        modalEL.present();
+        return modalEL.onDidDismiss();
+      })
+      .then((resultData) => {
+        // after submitiing the form in the modal
+        this.loadingCtrl
+          .create({
+            message: "Booking Ticket...",
+          })
+          .then((loadingEl) => {
+            loadingEl.present();
+
+            if (resultData.role == "confirm") {
+              // this.bookingSrvc
+              //   .addBooking(
+              //     this.vehicle.id,
+              //     this.vehicle.title,
+              //     this.vehicle.imageUrl,
+              //     resultData.data.firstName,
+              //     resultData.data.lastName,
+              //     resultData.data.capacity,
+              //     resultData.data.from,
+              //     resultData.data.to
+              //   )
+              //   .subscribe(() => {
+              //     loadingEl.dismiss();
+              //   });
+
+              console.log("doooone");
+            }
+          });
       });
   }
 }
